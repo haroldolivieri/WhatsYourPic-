@@ -1,0 +1,80 @@
+html, body {
+  min-height: 100% !important;
+  height: 100% !important;
+  background-color: transparent;
+}
+
+body {
+  // background: $bc-backgroundColor url('../img/padrao-15.png') fixed;
+}
+
+main {
+  margin: 0 auto;
+  padding-bottom: 100px;
+  width: 100%;
+  max-width: $bc-maxWidth;
+  min-width: $bc-minWidth;
+}
+
+.ci-container {
+  border: 1px solid black;
+  padding: $bc-mainPadding;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+
+  cursor: default;
+}
+
+// [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+//   display: none !important;
+// }
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+input[type="text"] {
+  cursor: text;
+}
+
+input[type="button"] {
+  cursor: pointer;
+}
+
+:focus {
+  outline: none !important;
+  border: none;
+  box-shadow: none;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit;
+    cursor: pointer;
+    * {
+      cursor: pointer;
+    }
+    &:hover {
+        text-decoration: none;
+        color: none;
+    }
+}

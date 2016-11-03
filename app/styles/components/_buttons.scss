@@ -1,0 +1,13 @@
+// ------------------------------
+// buttons.scss
+// Fabio Gois
+// [carioca.build]
+// ------------------------------
+
+.md-button {
+  @include border-radius($bc-buttonBorderRadius);
+  text-transform: none;
+  * {
+    cursor: pointer;
+  }
+}
