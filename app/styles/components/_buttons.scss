@@ -1,13 +1,13 @@
-// ------------------------------
-// buttons.scss
-// Fabio Gois
-// [carioca.build]
-// ------------------------------
+.ci-socialButtons .ci-button{
+  background: black;
+  color: white;
+  display: block;
+  height: 40px;
+  width: 100%;
+}
 
-.md-button {
-  @include border-radius($bc-buttonBorderRadius);
-  text-transform: none;
-  * {
-    cursor: pointer;
-  }
+.portfolio-item {
+    margin-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
 }

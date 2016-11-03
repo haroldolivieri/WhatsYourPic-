@@ -1,35 +1,76 @@
+<!-- .col-xs-	.col-sm-	.col-md-	.col-lg- -->
+
 <div class="container-fluid">
 
     <!-- Header -->
-    <div>
+    <div class="col-xs-12 col-sm-12">
         <h1>
             Das fotos já publicadas por você, escolha uma que te traga boas lembranças.
         </h1>
     </div>
 
     <!-- Left-Panel -->
-    <div>
-        <div>
-            <h2>Biblioteca de Fotos</h2>
-            <button>Facebook</button>
-            <button>Flickr</button>
-            <button>Instagram</button>
+    <div class="col-xs-12 col-sm-3">
+        <div class="ci-socialButtons">
+            <h3>Biblioteca de Fotos</h3>
+            <!-- <button class="btn">Facebook</button> -->
+            <button class="ci-button">
+                <img src="images/ci-icon-facebook.png" height="25" alt="facebook"/>
+                Facebook <i class="fa fa-check"></i>
+            </button>
+            <button class="ci-button">
+                <img src="images/ci-icon-google.png" height="25" alt="facebook"/>
+                Flickr <i class="fa fa-check"></i>
+            </button>
+            <button class="ci-button">
+                <img src="images/ci-icon-facebook.png" height="25" alt="facebook"/>
+                Instagram <i class="fa fa-check"></i>
+            </button>
         </div>
 
-        <div>
-            <h2>Sobre o projeto</h2>
-            <p>Sobre o projeto</p>
-        </div>
-
-        <div>
-            <h2>Projeto acadêmico</h2>
-            <p>Artes & Design PUC-Rio</p>
+        <div class="hidden-xs">
+            <div>
+                <h3>Sobre o projeto</h3>
+                <p>Projeto desenvolvido por Haroldo Olivieri para o projeto de conclusão do curso de graduação de Design de Mídia Digital da PUC-Rio. CrowdedInfo tem o objetivo de coletar o maior número de data sobre fotos, sua localização e a suas relações com seus donos.</p>
+            </div>
+            <div>
+                <h3>Projeto acadêmico</h3>
+                <p>Artes & Design PUC-Rio</p>
+            </div>
         </div>
     </div>
 
     <!-- Grid -->
-    <div>
-        <div></div>
+    <div class="col-xs-12 col-sm-5 ci-grid-parent">
+
+        <div class="col-xs-12 col-sm-12 ci-grid">
+            <div class="col-xs-4 col-sm-4 portfolio-item">
+                <a>
+                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 portfolio-item">
+                <a>
+                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 portfolio-item">
+                <a>
+                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 portfolio-item">
+                <a>
+                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
+                </a>
+            </div>
+            <div class="col-xs-4 col-sm-4 portfolio-item">
+                <a>
+                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
+                </a>
+            </div>
+        </div>
+
         <div>
             <p>Nenhuma foto carregada</p>
             <p>Escolha da sua biblioteca de fotos</p>
@@ -37,11 +78,13 @@
     </div>
 
     <!-- Right-Panel -->
-    <div>
-        <div>[IMAGEM]</div>
+    <div class="col-xs-12 col-sm-4">
+        <div class="hidden-xs">
+            [IMAGEM]
+        </div>
 
         <div>
-            <h2>Dados da imagem</h2>
+            <h3>Dados da imagem</h3>
             <form>
                 <div>
                     <input type="text" placeholder="Localização"></input>
@@ -61,4 +104,16 @@
             </form>
         </div>
     </div>
+
+    <div class="visible-xs-block">
+        <div>
+            <h3>Sobre o projeto</h3>
+            <p>Sobre o projeto</p>
+        </div>
+        <div>
+            <h3>Projeto acadêmico</h3>
+            <p>Artes & Design PUC-Rio</p>
+        </div>
+    </div>
+
 </div>

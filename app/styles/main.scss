@@ -8,6 +8,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "utils/_placeholders";
 @import "utils/_variables";
 
+@import "fonts/_fonts";
+
 @import "layout/_structure";
 
 @import "base/_transitions";
@@ -17,6 +19,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "components/_buttons";
 @import "components/_footer";
 @import "components/_forms";
+@import "components/_grid";
 @import "components/_header";
 
 @import "pages/_base";
