@@ -1,0 +1,17 @@
+// ------------------------------
+// header.scss
+// Fabio Gois
+// [carioca.build]
+// ------------------------------
+
+footer {
+    pointer-events: none;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: $bc-footerHeight;
+    background: $bc-footerBackgroundColor;
+    span {
+        color: white;
+    }
+}

@@ -1,0 +1,45 @@
+// ------------------------------
+// header.scss
+// Fabio Gois
+// [carioca.build]
+// ------------------------------
+
+.bc-header {
+    background: #fff;
+    height: 58px;
+    color: $bc-blue2;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+    .bd-header-wrapper {
+        background: #fff;
+        padding: 0px 25px 0px 43px;
+        margin: 0 auto;
+        height: 100%;
+        max-width: $bc-maxWidth;
+        min-width: $bc-minWidth;
+        img {
+            max-height: 25px;
+            margin-left: 8px;
+        }
+        .bc-header-user {
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            p {
+                line-height: 18px;
+                font-size: 90%;
+                text-align: right;
+                span {
+                    font-weight: bolder;
+                    font-size: 100%;
+                }
+            }
+            .md-button {
+                margin-left: 25px;
+                margin-right: 25px;
+            }
+        }
+    }
+}
