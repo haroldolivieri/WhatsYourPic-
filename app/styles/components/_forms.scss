@@ -1,39 +1,11 @@
-.bc-form {
+.ci-form {
 
-    h3.md-headline {
-        margin: 0;
-        padding: 0;
-        color: $bc-blue2;
-        margin-bottom: 25px;
-    }
+  input {
+    font-family: "sf_display_light";
+  }
 
-    md-radio-group {
-        p.md-subhead {
-            font-weight: bolder;
-            color: $bc-blue2;
-            margin-right: 25px;
-        }
-    }
-
-    md-select {
-        margin-bottom: 24px;
-    }
-
-    md-autocomplete {
-        padding: 0px;
-        margin-top: 0px;
-        margin-bottom: 30px;
-    }
-
-    md-input-container {
-        margin: 5px 0px;
-        padding: 0px;
-    }
-
-    sm-date-time-picker {
-        * {
-            color: #fff !important;
-        }
-    }
+  button {
+    font-family: "sf_display_semibold";
+  }
 
 }

@@ -1,3 +1,19 @@
+.ci-container {
+  // padding: $bc-mainPadding;
+}
+
+.ci-titlebox {
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+  margin: 30px 0px 50px 0px;
+}
+
+.ci-aboutbox {
+  margin: 30px 0px;
+}
+
 .black {
   background: black;
 }
@@ -10,7 +26,6 @@
 .red {
   background: red;
 }
-
 .green {
   background: green;
 }

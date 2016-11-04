@@ -1,10 +1,5 @@
-.page {
-}
-
 .ng-enter       { z-index: 8888; }
 .ng-leave       { z-index: 9999; }
-
-
 
 @include keyframes(fadeOut) {
   from {

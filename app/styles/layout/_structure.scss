@@ -5,8 +5,7 @@ html, body {
 }
 
 body {
-  // background: $bc-backgroundColor url('../img/padrao-15.png') fixed;
-  font-family: 'sf_ui_displaybold' !important;
+  font-family: 'sf_display_bold' !important;
 }
 
 main {
@@ -15,11 +14,6 @@ main {
   width: 100%;
   max-width: $bc-maxWidth;
   min-width: $bc-minWidth;
-}
-
-.ci-container {
-  border: 1px solid black;
-  padding: $bc-mainPadding;
 }
 
 * {

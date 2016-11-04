@@ -1,13 +1,41 @@
-.ci-socialButtons .ci-button{
-  background: black;
-  color: white;
-  display: block;
-  height: 40px;
-  width: 100%;
-}
+.ci-socialButtons {
 
-.portfolio-item {
-    margin-bottom: 10px;
-    padding-right: 5px;
-    padding-left: 5px;
+  // margin: 20px;
+
+  button {
+
+    * {
+      cursor: pointer;
+    }
+
+    font-family: "sf_display_thin";
+    background: white;
+    color: black;
+    border: 1px solid #000;
+    display: block;
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    text-align: left;
+    padding-left: 55px;
+    padding-top: 6px;
+
+    img {
+      &:nth-child(1) {
+        position: absolute;
+        left: 10px;
+        top: 12px;
+        height: 35px;
+      }
+      &:nth-child(2) {
+        position: absolute;
+        right: 10px;
+        top: 22px;
+        max-height: 15px;
+      }
+    }
+  }
+
 }
