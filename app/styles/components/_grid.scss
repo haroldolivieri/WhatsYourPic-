@@ -1,7 +1,9 @@
 .ci-grid-parent {
   margin: 0px;
+  margin-bottom: 15px;
   padding: 0px 10px;
-  height: $mainDivHeight;
+  position: relative;
+  display: block;
 
   .ci-grid {
     font-family: "sf_display_bold";
@@ -15,8 +17,8 @@
   }
 
   .ci-grid-empty {
-    border: 1px solid black;
-    padding: 5px;
+    border: none;
+    padding: 50px 0px;
     height: 100%;
     width: 100%;
     display: table;
@@ -35,5 +37,27 @@
 
 
   }
+
+}
+
+
+@include respond-to(small) {
+  .ci-grid-parent {
+    padding: 100px 0px;
+  }
+}
+
+@include respond-to(medium) {
+  .ci-grid-parent {
+    padding: 5px;
+    margin-bottom: 0px;
+    .ci-grid-empty {
+      border: 1px solid black;
+    }
+  }
+
+}
+
+@include respond-to(large) {
 
 }
