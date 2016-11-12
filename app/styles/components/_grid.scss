@@ -1,13 +1,39 @@
 .ci-grid-parent {
-
   margin: 0px;
-  padding: 0px;
+  padding: 0px 10px;
+  height: $mainDivHeight;
 
   .ci-grid {
     font-family: "sf_display_bold";
     display: block;
     margin: 0px;
     padding: 0px;
+    div {
+      margin: 0px;
+      padding: 5px;
+    }
+  }
+
+  .ci-grid-empty {
+    border: 1px solid black;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+    display: table;
+
+    div {
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+
+      h3 {
+        vertical-align: middle;
+        color: #8A8D8F;
+        font-family: "sf_display_bold";
+      }
+    }
+
+
   }
 
 }

@@ -1,6 +1,4 @@
-<!-- .col-xs-	.col-sm-	.col-md-	.col-lg- -->
-
-<div class="container">
+<div>
 
     <!-- Header -->
     <div class="ci-titlebox col-xs-12 col-sm-12">
@@ -11,23 +9,26 @@
     </div>
 
     <!-- Left-Panel -->
-    <div class="col-xs-12 col-sm-12 col-md-3">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ci-leftPanel">
         <div class="ci-socialButtons">
             <h3>Biblioteca de Fotos</h3>
             <button>
-                <img src="images/facebook-logo.svg" alt="facebook"/>
-                Facebook
-                <img src="images/ic_check.svg" alt="facebook-checked"/>
+                <span>
+                    <img src="images/facebook-logo.svg" alt="facebook"/>
+                    Facebook
+                </span>
             </button>
             <button>
-                <img src="images/flickr-logo.svg" alt="flickr"/>
-                Flickr
-                <img src="images/ic_check.svg" alt="flickr-checked"/>
+                <span>
+                    <img src="images/flickr-logo.svg" alt="flickr"/>
+                    Flickr
+                </span>
             </button>
             <button>
-                <img src="images/instagram-logo.svg" alt="instagram"/>
-                Instagram
-                <img src="images/ic_check.svg" alt="instagram-checked"/>
+                <span>
+                    <img src="images/instagram-logo.svg" alt="instagram"/>
+                    Instagram
+                </span>
             </button>
         </div>
 
@@ -44,65 +45,34 @@
     </div>
 
     <!-- Grid -->
-    <div class="col-xs-12 col-sm-12 col-md-5 ci-grid-parent">
+    <div class="col-xs-12 col-sm-12 col-md-6 ci-grid-parent">
 
-        <div class="col-xs-12 col-sm-12 ci-grid">
-            <div class="col-xs-4 col-sm-4 portfolio-item">
+        <!-- <div class="col-xs-12 col-sm-12 ci-grid">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                 <a>
                     <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
                 </a>
             </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-        </div>
+        </div> -->
 
-        <div>
-            <p>Nenhuma foto carregada</p>
-            <p>Escolha da sua biblioteca de fotos</p>
+        <div class="ci-grid-empty">
+            <div>
+                <h3>Nenhuma foto carregada</h3>
+                <h3>Escolha da sua biblioteca de fotos</h3>
+            </div>
         </div>
     </div>
 
     <!-- Right-Panel -->
-    <div class="col-xs-12 col-sm-12 col-md-4">
-        <div class="hidden-xs hidden-sm">
-            [IMAGEM]
+    <div class="col-xs-12 col-sm-12 col-md-3 ci-rightPanel">
+        <div class="hidden-xs hidden-sm ci-right-bigImage">
+            <!-- <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt=""> -->
         </div>
 
-        <div>
+        <div class="ci-right-form">
             <h3>Dados da imagem</h3>
             <form class="ci-form">
-                <div>
-                    <input type="text" placeholder="Localização"></input>
-                </div>
-                <div>
-                    <div>
-                        <input type="text" placeholder="Mês"></input>
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Ano"></input>
-                    </div>
-                    <div>
-                        <button type="submit">Enviar!</button>
-                    </div>
-                </div>
+                <input type="text" class="form-control" placeholder="Localização"></input>
 
             </form>
         </div>

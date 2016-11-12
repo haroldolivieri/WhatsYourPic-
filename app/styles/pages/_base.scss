@@ -1,5 +1,7 @@
 .ci-container {
-  // padding: $bc-mainPadding;
+  padding: 50px;
+  height: 100%;
+  width: 100%;
 }
 
 .ci-titlebox {
@@ -7,25 +9,49 @@
     margin: 0px;
     padding: 0px;
   }
-  margin: 30px 0px 50px 0px;
+  margin: -20px 0px 50px 0px;
+
 }
 
-.ci-aboutbox {
-  margin: 30px 0px;
+.ci-leftPanel {
+  height: $mainDivHeight;
+
+  .ci-aboutbox {
+    margin: 30px 0px;
+    max-width: 300px;
+  }
 }
 
-.black {
-  background: black;
-}
-.yellow {
-  background: yellow;
-}
-.blue {
-  background: blue;
-}
-.red {
-  background: red;
-}
-.green {
-  background: green;
+.ci-rightPanel {
+  height: $mainDivHeight;
+  // border: 1px solid black;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+
+  .ci-right-bigImage {
+    height: 70%;
+    // border: 1px solid red;
+    margin: 0px;
+    padding: 0px;
+
+    img {
+      background-size: cover;
+      max-height: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  .ci-right-form {
+    height: 30%;
+    // width: 100%;
+    margin: 0px;
+    padding: 0px;
+    // border: 1px solid blue;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+
+
+  }
 }
