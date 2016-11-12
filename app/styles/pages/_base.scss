@@ -1,9 +1,8 @@
 .ci-container {
-  padding: 50px;
   height: 100%;
   width: 100%;
+  padding-top: 20px;
 }
-
 
 
 .ci-titlebox {
@@ -11,7 +10,11 @@
     margin: 0px;
     padding: 0px;
   }
-  margin: -20px 0px 50px 0px;
+  margin: 0px 0px 50px 0px;
+
+  br {
+    display: none;
+  }
 
 }
 
@@ -26,6 +29,9 @@
   }
 }
 
+.ci-aboutImg {
+  margin-bottom: 50px;
+}
 
 
 
@@ -66,6 +72,16 @@
 }
 @include respond-to(medium) {
 
+  .ci-titlebox {
+    br {
+      display: block;
+    }
+  }
+
+  .ci-container {
+    padding: 50px;
+  }
+
   .ci-leftPanel, .ci-rightPanel, .ci-grid-parent {
     height: $mainDivHeight;
   }
@@ -73,6 +89,9 @@
   .ci-rightPanel {
     margin-bottom: 0px;
     .ci-right-bigImage {
+      margin: 0px;
+
+      padding: 15px;
       display: block;
     }
     .ci-right-form {
