@@ -1,13 +1,63 @@
 .ci-grid-parent {
-
   margin: 0px;
-  padding: 0px;
+  margin-bottom: 15px;
+  padding: 0px 10px;
+  position: relative;
+  display: block;
 
   .ci-grid {
     font-family: "sf_display_bold";
     display: block;
     margin: 0px;
     padding: 0px;
+    div {
+      margin: 0px;
+      padding: 5px;
+    }
   }
+
+  .ci-grid-empty {
+    border: none;
+    padding: 50px 0px;
+    height: 100%;
+    width: 100%;
+    display: table;
+
+    div {
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+
+      h3 {
+        vertical-align: middle;
+        color: #8A8D8F;
+        font-family: "sf_display_bold";
+      }
+    }
+
+
+  }
+
+}
+
+
+@include respond-to(small) {
+  .ci-grid-parent {
+    padding: 100px 0px;
+  }
+}
+
+@include respond-to(medium) {
+  .ci-grid-parent {
+    padding: 5px;
+    margin-bottom: 0px;
+    .ci-grid-empty {
+      border: 1px solid black;
+    }
+  }
+
+}
+
+@include respond-to(large) {
 
 }

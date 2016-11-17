@@ -1,31 +1,105 @@
 .ci-container {
-  // padding: $bc-mainPadding;
+  height: 100%;
+  width: 100%;
+  padding-top: 20px;
 }
+
 
 .ci-titlebox {
   * {
     margin: 0px;
     padding: 0px;
   }
-  margin: 30px 0px 50px 0px;
+  margin: 0px 0px 50px 0px;
+
+  br {
+    display: none;
+  }
+
 }
 
-.ci-aboutbox {
-  margin: 30px 0px;
+
+
+.ci-leftPanel {
+  height: auto;
+
+  .ci-aboutbox {
+    margin: 30px 0px;
+    max-width: 300px;
+  }
 }
 
-.black {
-  background: black;
+.ci-aboutImg {
+  margin-bottom: 50px;
 }
-.yellow {
-  background: yellow;
+
+
+
+.ci-rightPanel {
+  display: block;
+  position: relative;
+  margin: 0px;
+  margin-bottom: 50px;
+  padding: 0px;
+
+  .ci-right-bigImage {
+    display: none;
+    height: 70%;
+    margin: 0px;
+    padding: 0px;
+
+    img {
+      background-size: cover;
+      max-height: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  .ci-right-form {
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+
+
+  }
 }
-.blue {
-  background: blue;
+
+
+@include respond-to(small) {
+
 }
-.red {
-  background: red;
+@include respond-to(medium) {
+
+  .ci-titlebox {
+    br {
+      display: block;
+    }
+  }
+
+  .ci-container {
+    padding: 50px;
+  }
+
+  .ci-leftPanel, .ci-rightPanel, .ci-grid-parent {
+    height: $mainDivHeight;
+  }
+
+  .ci-rightPanel {
+    margin-bottom: 0px;
+    .ci-right-bigImage {
+      margin: 0px;
+
+      padding: 15px;
+      display: block;
+    }
+    .ci-right-form {
+      position: absolute;;
+    }
+  }
+
 }
-.green {
-  background: green;
+@include respond-to(large) {
+
 }

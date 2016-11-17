@@ -1,12 +1,39 @@
 h1 {
   font-family: "sf_display_regular";
+  font-size: 24px;
 }
 
 h3 {
   margin: 0px 0px 20px;
   font-family: "sf_display_semibold";
+  font-size: 16px;
   &.ci-custom-h3 {
     font-family: "sf_display_bold";
+  }
+}
+
+@include respond-to(small) {
+  h1 {
+    font-size: 26px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+}
+@include respond-to(medium) {
+  h1 {
+    font-size: 32px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+}
+@include respond-to(large) {
+  h1 {
+    font-size: 48px;
+  }
+  h3 {
+    font-size: 32px;
   }
 }
 

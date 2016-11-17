@@ -1,6 +1,4 @@
-<!-- .col-xs-	.col-sm-	.col-md-	.col-lg- -->
-
-<div class="container">
+<div ng-controller="MainCtrl">
 
     <!-- Header -->
     <div class="ci-titlebox col-xs-12 col-sm-12">
@@ -11,24 +9,35 @@
     </div>
 
     <!-- Left-Panel -->
-    <div class="col-xs-12 col-sm-12 col-md-3">
-        <div class="ci-socialButtons">
-            <h3>Biblioteca de Fotos</h3>
-            <button>
-                <img src="images/facebook-logo.svg" alt="facebook"/>
-                Facebook
-                <img src="images/ic_check.svg" alt="facebook-checked"/>
-            </button>
-            <button>
-                <img src="images/flickr-logo.svg" alt="flickr"/>
-                Flickr
-                <img src="images/ic_check.svg" alt="flickr-checked"/>
-            </button>
-            <button>
-                <img src="images/instagram-logo.svg" alt="instagram"/>
-                Instagram
-                <img src="images/ic_check.svg" alt="instagram-checked"/>
-            </button>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ci-leftPanel">
+        <div class="ci-socialButtons row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Biblioteca de Fotos</h3>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
+                <button>
+                    <span>
+                        <img src="images/facebook-logo.svg" alt="facebook"/>
+                        <span>Facebook</span>
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
+                <button>
+                    <span>
+                        <img src="images/instagram-logo.svg" alt="instagram"/>
+                        <span>Instagram</span>
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
+                <button>
+                    <span>
+                        <img src="images/flickr-logo.svg" alt="flickr"/>
+                        <span>Flickr</span>
+                    </span>
+                </button>
+            </div>
         </div>
 
         <div class="hidden-xs hidden-sm">
@@ -38,80 +47,71 @@
             </div>
             <div>
                 <h3 class="ci-custom-h3">Projeto acadêmico</h3>
-                <img src="images/dad-logo.svg" alt="puc-rio dad"/ height="70">
+                <img src="images/dad-logo.svg" alt="puc-rio dad" height="70" class="ci-aboutImg"/>
             </div>
         </div>
     </div>
 
     <!-- Grid -->
-    <div class="col-xs-12 col-sm-12 col-md-5 ci-grid-parent">
+    <div class="col-xs-12 col-sm-12 col-md-6 ci-grid-parent">
 
-        <div class="col-xs-12 col-sm-12 ci-grid">
-            <div class="col-xs-4 col-sm-4 portfolio-item">
+        <!-- <div class="col-xs-12 col-sm-12 ci-grid">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
                 <a>
                     <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
                 </a>
             </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-4 portfolio-item">
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-                </a>
-            </div>
-        </div>
+        </div> -->
 
-        <div>
-            <p>Nenhuma foto carregada</p>
-            <p>Escolha da sua biblioteca de fotos</p>
+        <div class="col-xs-12 col-sm-12 ci-grid-empty">
+            <div>
+                <h3>Nenhuma foto carregada</h3>
+                <h3>Escolha da sua biblioteca de fotos</h3>
+            </div>
         </div>
     </div>
 
+
     <!-- Right-Panel -->
-    <div class="col-xs-12 col-sm-12 col-md-4">
-        <div class="hidden-xs hidden-sm">
-            [IMAGEM]
+    <div class="col-xs-12 col-sm-12 col-md-3 ci-rightPanel">
+        <div class="hidden-xs hidden-sm ci-right-bigImage">
+            <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
         </div>
 
-        <div>
-            <h3>Dados da imagem</h3>
-            <form class="ci-form">
-                <div>
-                    <input type="text" placeholder="Localização"></input>
-                </div>
-                <div>
-                    <div>
-                        <input type="text" placeholder="Mês"></input>
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Ano"></input>
-                    </div>
-                    <div>
-                        <button type="submit">Enviar!</button>
-                    </div>
+        <div class="ci-right-form">
+
+
+            <div class="ci-form-inline form-inline row">
+
+                <div class="col-xs-12 col-sm-12">
+                    <h3>Dados da imagem</h3>
                 </div>
 
-            </form>
+                <div class="col-xs-12 col-sm-12">
+                    <input type="text" class="ci-form-full" placeholder="Localização">
+                </div>
+
+                <div class="col-xs-4 col-sm-4">
+                    <input type="text" placeholder="Mês">
+                </div>
+
+                <div class="col-xs-4 col-sm-4">
+                    <input type="text" placeholder="Ano">
+                </div>
+
+                <div class="col-xs-4 col-sm-4">
+                    <button type="submit">Enviar!</button>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
     <div class="visible-xs-block visible-sm-block">
         <div class="col-xs-6">
             <h3>Projeto acadêmico</h3>
-            <img src="images/dad-logo.svg" alt="puc-rio dad"/ height="70">
+            <img src="images/dad-logo.svg" alt="puc-rio dad"/ height="70" class="ci-aboutImg">
         </div>
         <div class="col-xs-6">
             <h3>Sobre o projeto</h3>

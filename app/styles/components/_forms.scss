@@ -1,11 +1,35 @@
-.ci-form {
+.ci-form-inline {
+  width: 100%;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
 
   input {
-    font-family: "sf_display_light";
+    font-family: "sf_display_light" !important;
+    max-width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 3px solid #BABABA;
+    border-radius: 0px;
+    padding: 0px;
+    box-shadow: none;
+    font-size: 26px;
+    color: #000;
+    width: auto;
+    position: relative;
+  }
+
+  input.ci-form-full {
+    margin-bottom: 20px;
   }
 
   button {
     font-family: "sf_display_semibold";
+    border: 0px;
+    background: transparent;
+    font-size: 28px;
+    color: #E3E3E3;
   }
 
 }

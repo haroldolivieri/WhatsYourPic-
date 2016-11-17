@@ -1,6 +1,6 @@
 .ci-socialButtons {
 
-  // margin: 20px;
+  display: block;
 
   button {
 
@@ -15,27 +15,54 @@
     display: block;
     height: 60px;
     width: 100%;
+    max-width: 225px;
     font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     position: relative;
-    text-align: left;
-    padding-left: 55px;
+    text-align: center;
     padding-top: 6px;
+    position: relative;
 
-    img {
-      &:nth-child(1) {
-        position: absolute;
-        left: 10px;
-        top: 12px;
+
+    span:first-child {
+      img {
         height: 35px;
+        margin-right: 4px;
+        margin-top: -5px;
       }
-      &:nth-child(2) {
-        position: absolute;
-        right: 10px;
-        top: 22px;
-        max-height: 15px;
+      span {
+        padding-left: 0px;
+        display: none;
+      }
+    }
+
+
+  }
+
+}
+
+
+@include respond-to(small) {
+
+}
+
+@include respond-to(medium) {
+  .ci-socialButtons {
+    button {
+      text-align: left;
+      margin-bottom: 15px;
+      span:first-child {
+        padding-left: 30px;
+        text-align: left;
+        span {
+          display: inline;
+        }
       }
     }
   }
+
+}
+
+@include respond-to(large) {
 
 }
