@@ -2,13 +2,12 @@
 
 /**
  * @ngdoc function
- * @name crowdedInfoApp.controller:AboutCtrl
+ * @name whatsYourPic.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the crowdedInfoApp
+ * Controller of the whatsYourPic
  */
-angular.module('crowdedInfoApp')
-  .controller('AboutCtrl', function () {
+whatsYourPic.controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
