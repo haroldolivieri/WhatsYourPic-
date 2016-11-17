@@ -25,7 +25,7 @@ h3 {
     font-size: 32px;
   }
   h3 {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 @include respond-to(large) {
@@ -33,7 +33,7 @@ h3 {
     font-size: 48px;
   }
   h3 {
-    font-size: 32px;
+    font-size: 22px;
   }
 }
 
