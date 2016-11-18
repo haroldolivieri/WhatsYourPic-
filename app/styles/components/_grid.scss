@@ -12,7 +12,7 @@
     padding: 0px;
     div {
       margin: 0px;
-      padding: 5px;
+      padding: 0px 5px 10px 5px;
     }
   }
 
@@ -35,11 +35,9 @@
       }
     }
 
-
   }
 
 }
-
 
 @include respond-to(small) {
   .ci-grid-parent {
