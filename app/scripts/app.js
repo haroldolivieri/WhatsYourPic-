@@ -13,7 +13,8 @@
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'smoothScroll'
 ]);
 
 whatsYourPic.config(function ($routeProvider) {
