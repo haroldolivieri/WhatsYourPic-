@@ -83,9 +83,20 @@
                     <h3>Dados da imagem</h3>
                 </div>
 
+                <p class="input-group" ng-disabled="invoiceDateDisable">
+    <input is-open="opened" type="text" datepicker-popup="M/d/yyyy" ng-model="Date" datepicker-options="dateOptions" />
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+</p>
+
                 <div class="col-xs-12 col-sm-12">
-                    <input id="locationInput" type="text" class="ci-form-full" placeholder="Localização">
+                    <input g-places-autocomplete ng-model="locationInput" type="text" class="ci-form-full" placeholder="Localização">
                 </div>
+
+                 <div>
+                     <mydatepicker ng-model="formData.date" date-options="dateOptions" opened="opened"/>
+                 </div>
 
                 <div class="col-xs-4 col-sm-4">
                     <input type="text" placeholder="Mês">
@@ -96,7 +107,7 @@
                 </div>
 
                 <div class="col-xs-4 col-sm-4">
-                    <button type="submit">Enviar!</button>
+                    <button type="submit" ng-click="sendForm()">Enviar!</button>
                 </div>
 
             </div>

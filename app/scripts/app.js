@@ -14,7 +14,9 @@
     'ngSanitize',
     'ngTouch',
     'LocalStorageModule',
-    'smoothScroll'
+    'smoothScroll',
+    'google.places',
+    'ui.bootstrap'
 ]);
 
 whatsYourPic.config(function ($routeProvider) {
