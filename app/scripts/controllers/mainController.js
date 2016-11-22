@@ -10,6 +10,7 @@
 whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, smoothScroll) {
 
     $rootScope.selectedImage = ""
+    $rootScope.selectedImageCheck = false
 
     $rootScope.getFacebookPhotosIds = function() {
         console.log("ids")
@@ -61,6 +62,11 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
 
     $rootScope.selectImage = function(url) {
         $rootScope.selectedImage = url
+        if ($rootScope.selectedImageCheck == false) {
+            $rootScope.selectedImageCheck = true
+        } else {
+            $rootScope.selectedImageCheck = false
+        }
         var element = document.getElementById('top');
         smoothScroll(element);
     }
