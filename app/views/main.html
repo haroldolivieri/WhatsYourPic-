@@ -1,7 +1,7 @@
 <div>
 
     <!-- Header -->
-    <div class="ci-titlebox col-xs-12 col-sm-12">
+    <div class="ci-titlebox col-xs-12 col-sm-12" id="top">
         <h1>
             Das fotos já publicadas por você,<br/>
             escolha uma que te traga boas lembranças.
@@ -55,157 +55,28 @@
     <!-- Grid -->
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 ci-grid-parent" ng-controller="MainCtrl">
 
-        <div class="col-xs-12 col-sm-12 ci-grid">
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
+        <div class="col-xs-12 col-sm-12 ci-grid" ng-if="checkIfHasImages()">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3" ng-repeat="url in urlArray">
+              <a ng-click="selectImage(url)"><img class="img-responsive" src="{{url}}" alt=""></a>
           </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3">
-              <a>
-                  <img class="img-responsive" src="http://placehold.it/750x750/000000/ffffff" alt="">
-              </a>
-          </div>
-
         </div>
 
-        <!-- <div class="col-xs-12 col-sm-12 ci-grid-empty">
+        <div class="col-xs-12 col-sm-12 ci-grid-empty" ng-if="!checkIfHasImages()">
             <div>
                 <h3>Nenhuma foto carregada</h3>
                 <h3>Escolha da sua biblioteca de fotos</h3>
             </div>
-        </div> -->
+        </div>
     </div>
 
 
     <!-- Right-Panel -->
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-5 ci-rightPanel">
-        <div class="hidden-xs hidden-sm ci-right-bigImage">
+        <div class="hidden-xs hidden-sm ci-right-bigImage" ng-controller="MainCtrl">
             <img class="img-responsive" ng-src="{{selectedImage}}" alt="">
         </div>
 
         <div class="ci-right-form">
-
             <div class="ci-form-inline form-inline row">
 
                 <div class="col-xs-12 col-sm-12">
@@ -213,7 +84,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-12">
-                    <input type="text" class="ci-form-full" placeholder="Localização">
+                    <input id="locationInput" type="text" class="ci-form-full" placeholder="Localização">
                 </div>
 
                 <div class="col-xs-4 col-sm-4">
