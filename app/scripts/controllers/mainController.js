@@ -27,6 +27,8 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
     $scope.opened = true;
     };
 
+    $rootScope.selectedImageCheck = false
+
     $rootScope.getFacebookPhotosIds = function() {
         console.log("ids")
         FB.api("/" + $rootScope.userId + "/photos?type=uploaded&limit=250",
@@ -90,20 +92,60 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
 
     var getFacebookPhotosUrl = function(imageObjects) {
         console.log("photos");
-        $rootScope.urlArray = [];
+        $rootScope.photoArray = [];
 
         angular.forEach(imageObjects.data, function(value, key){
             FB.api("/" + value.id + "/picture", function (response) {
-                console.log(response)
-                if (!response || response.error) {
-                    console.log(response.error);
-                } else {
+                if (response) {
+                    var photo = {}
+                    photo.url = response.data.url
+                    photo.selected = false
+                    photo.onHover = false
                     $rootScope.$apply(function () {
-                        $rootScope.urlArray.push(response.data.url);
+                        $rootScope.photoArray.push(photo);
                     });
                 }
             });
-            console.log($rootScope.urlArray)
         });
+        console.log($rootScope.photoArray)
     }
+
+    var getRandomElements = function(sourceArray, neededElements) {
+        var result = [];
+        for (var i = 0; i < neededElements; i++) {
+            result.push(sourceArray[Math.floor(Math.random()*sourceArray.length)]);
+        }
+        return result;
+    }
+
+    $rootScope.checkIfHasImages = function() {
+        if (!$rootScope.photoArray) {
+            return false;
+        }
+        return $rootScope.photoArray.length > 0
+    }
+
+    $scope.selectImage = function(index) {
+        angular.forEach($rootScope.photoArray, function(value, key){
+            value.selected = false
+            value.onHover = false
+        });
+
+        $rootScope.selectedImage = $rootScope.photoArray[index].url
+        $rootScope.photoArray[index].selected = true
+
+        var element = document.getElementById('form');
+        smoothScroll(element);
+    }
+
+    $scope.onMouseHover = function(index) {
+        $rootScope.photoArray[index].onHover = true
+    };
+
+    $scope.onMouseLeave = function(index) {
+        console.log('leaved ' + index)
+        angular.forEach($rootScope.photoArray, function(value, key){
+            value.onHover = false
+        });
+    };
 });
