@@ -68,7 +68,7 @@
                       <span class="glyphicon glyphicon-ok" aria-hidden="true"/>
                   </div>
               </a>
-              <img ng-src="{{photo.url}}" style="border-radius: 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); width : 400px; height: auto; position: relative; z-index:1000; top:-50px; left: 50px;" ng-if="photo.onHover">
+              <img ng-src="{{photo.url}}" class="ci-img-onHover" ng-if="photo.onHover">
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="col-xs-4 col-sm-4">
-                    <button type="submit" ng-click="sendForm()">Enviar!</button>
+                    <button type="submit" class="pull-right" ng-click="sendForm()">Enviar!</button>
                 </div>
 
             </div>
