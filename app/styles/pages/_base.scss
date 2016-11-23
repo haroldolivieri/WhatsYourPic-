@@ -59,6 +59,11 @@
       max-height: 100%;
       min-width: 100%;
       max-width: 100%;
+      display: block !important;
+
+      &[src="empty"] {
+        display: none !important;
+      }
     }
   }
 
