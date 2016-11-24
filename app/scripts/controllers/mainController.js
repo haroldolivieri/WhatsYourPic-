@@ -9,9 +9,8 @@
  */
 whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, smoothScroll) {
 
-    $rootScope.selectedImage = ""
+    $rootScope.selectedImage = "empty"
     $scope.locationInput = ""
-
 
     $scope.formData = {};
     $scope.formData.date = "";
