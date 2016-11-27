@@ -43,8 +43,9 @@ whatsYourPic.run(['$rootScope', '$window', function($rootScope, $window) {
             cookie: true,
             xfbml: true,
             version: 'v2.4'
-
         });
+
+        $(document).trigger('fbload');
     };
 
     //Carrega API do facebook assincronamente

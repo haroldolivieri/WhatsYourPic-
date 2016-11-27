@@ -7,7 +7,8 @@
  * # MainCtrl
  * Controller of the whatsYourPic
  */
-whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, smoothScroll) {
+whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
+    smoothScroll, localStorageService) {
 
     $rootScope.selectedImage = "empty"
     $scope.locationInput = ""
@@ -27,19 +28,24 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
     };
 
     $rootScope.selectedImageCheck = false
+    $rootScope.facebookUserId = localStorageService.get('fbUserId')
+    $rootScope.facebookToken = localStorageService.get('fbToken')
+    console.log('oi')
+
+    $(document).on('fbload', function(){
+        $rootScope.getFacebookPhotosIds()
+    });
 
     $rootScope.getFacebookPhotosIds = function() {
-        console.log("ids")
-        FB.api("/" + $rootScope.userId + "/photos?type=uploaded&limit=250",
-            function (response) {
-                console.log(response)
-                if (!response || response.error) {
-                    console.log(response.error);
-                } else {
-                    getFacebookPhotosUrl(response);
-                }
+        FB.api("/" + $rootScope.facebookUserId +
+        "/photos?type=uploaded&limit=20&access_token=" +
+        $rootScope.facebookToken, function (response) {
+            if (!response || response.error) {
+                console.log(response.error);
+            } else {
+                getFacebookPhotosUrl(response);
             }
-        );
+        });
     };
 
     $rootScope.checkIfHasImages = function() {
@@ -70,7 +76,8 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
     var getRandomElements = function(sourceArray, neededElements) {
         var result = [];
         for (var i = 0; i < neededElements; i++) {
-            result.push(sourceArray[Math.floor(Math.random()*sourceArray.length)]);
+            result
+            .push(sourceArray[Math.floor(Math.random()*sourceArray.length)]);
         }
         return result;
     }
@@ -90,12 +97,14 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
     }
 
     var getFacebookPhotosUrl = function(imageObjects) {
-        console.log("photos");
+        console.log(imageObjects);
         $rootScope.photoArray = [];
 
         angular.forEach(imageObjects.data, function(value, key){
-            FB.api("/" + value.id + "/picture", function (response) {
+            FB.api("/" + value.id + "/picture?access_token=" +
+            $rootScope.facebookToken, function (response) {
                 if (response) {
+                    console.log(response)
                     var photo = {}
                     photo.url = response.data.url
                     photo.selected = false
@@ -106,7 +115,6 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
                 }
             });
         });
-        console.log($rootScope.photoArray)
     }
 
     var getRandomElements = function(sourceArray, neededElements) {
@@ -134,17 +142,30 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window, sm
         $rootScope.photoArray[index].selected = true
 
         var element = document.getElementById('form');
-        smoothScroll(element);
+        // smoothScroll(element);
     }
 
     $scope.onMouseHover = function(index) {
+        clearHoverPropertyFromAll()
+        if ($rootScope.photoArray[index].selected) {
+            return;
+        }
         $rootScope.photoArray[index].onHover = true
+
+        var imageElement = document.getElementById('image-' + index);
+        var popupElement = document.getElementById('popup-' + index);
+
+        console.log(isVisibleOnViewPort(element))
     };
 
     $scope.onMouseLeave = function(index) {
-        console.log('leaved ' + index)
+        clearHoverPropertyFromAll()
+    };
+
+    var clearHoverPropertyFromAll = function() {
         angular.forEach($rootScope.photoArray, function(value, key){
             value.onHover = false
         });
-    };
+    }
+
 });

@@ -56,19 +56,19 @@
     </div>
 
     <!-- Grid -->
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 ci-grid-parent" ng-controller="MainCtrl">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 ci-grid-parent">
 
         <div class="col-xs-12 col-sm-12 ci-grid" ng-if="checkIfHasImages()">
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3" ng-repeat="photo in photoArray track by $index">
             <div class="ci-grid-helper"></div>
             <div class="ci-grid-item">
-              <a ng-click="selectImage($index)" ng-mouseover="onMouseHover($index)" ng-mouseleave="onMouseLeave($index)">
+              <a id="image-{{$index}}" ng-click="selectImage($index)">
                   <img class="" ng-src="{{photo.url}}">
                   <div class="ci-grid-itemChecked" ng-if="photo.selected">
                       <span class="glyphicon glyphicon-ok" aria-hidden="true"/>
                   </div>
               </a>
-              <img ng-src="{{photo.url}}" class="ci-img-onHover" ng-if="photo.onHover">
+              <img id="popup-{{$index}}" ng-src="{{photo.url}}" class="ci-img-onHover" ng-show="photo.onHover" ng-click="selectImage($index)">
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@
     <!-- Right-Panel -->
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-5 ci-rightPanel" id="form">
 
-        <div class="hidden-xs hidden-sm col-md-12 col-lg-12 ci-right-bigImage" ng-controller="MainCtrl">
+        <div class="hidden-xs hidden-sm col-md-12 col-lg-12 ci-right-bigImage">
             <img class="img-responsive" ng-src="{{selectedImage}}" alt="">
         </div>
 
