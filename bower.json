@@ -12,7 +12,8 @@
     "ngSmoothScroll": "^2.0.0",
     "angular-google-places-autocomplete": "^0.2.7",
     "angular-bootstrap": "^2.2.0",
-    "sass-flex-mixin": "^1.0.3"
+    "sass-flex-mixin": "^1.0.3",
+    "angular-instagram-api-factory": "^0.5.0"
   },
   "appPath": "app",
   "moduleName": "whatsYourPic",

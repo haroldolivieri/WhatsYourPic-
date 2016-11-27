@@ -16,7 +16,8 @@
     'LocalStorageModule',
     'smoothScroll',
     'google.places',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'jtt_instagram'
 ]);
 
 whatsYourPic.config(function ($routeProvider) {
@@ -43,8 +44,9 @@ whatsYourPic.run(['$rootScope', '$window', function($rootScope, $window) {
             cookie: true,
             xfbml: true,
             version: 'v2.4'
-
         });
+
+        $(document).trigger('fbload');
     };
 
     //Carrega API do facebook assincronamente

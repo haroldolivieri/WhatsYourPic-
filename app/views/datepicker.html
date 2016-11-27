@@ -1,4 +1,6 @@
-<p class="input-group">
-    <input type="text" class="form-control" datepicker-popup="" ng-model="dt" is-open="opened" min="minDate" ng-click="open($event)"
-    max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-</p>
+<div>
+    <input type="text" uib-datepicker-popup="{{datestyle}}" ng-model="dt"  placeholder="Mês"
+    is-open="vm.popupCalendar.opened" ng-required="true" ng-click="vm.openCalendar()"
+    datepicker-options="vm.dateOptions" show-button-bar="false" show-weeks="false"
+    close-on-date-selection="true" readonly />
+</div>
