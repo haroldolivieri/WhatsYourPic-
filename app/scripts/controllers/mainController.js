@@ -9,28 +9,14 @@
  */
 whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
     smoothScroll, localStorageService) {
+    console.log('main')
 
     $rootScope.selectedImage = "empty"
     $scope.locationInput = ""
 
-    $scope.formData = {};
-    $scope.formData.date = "";
-    $scope.opened = false;
-
-    //Datepicker
-    $scope.dateOptions = {
-        'year-format': "'yy'",
-        'show-weeks' : false
-    };
-
-    $scope.open = function () {
-    $scope.opened = true;
-    };
-
     $rootScope.selectedImageCheck = false
     $rootScope.facebookUserId = localStorageService.get('fbUserId')
     $rootScope.facebookToken = localStorageService.get('fbToken')
-    console.log('oi')
 
     $(document).on('fbload', function(){
         $rootScope.getFacebookPhotosIds()
@@ -97,14 +83,12 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
     }
 
     var getFacebookPhotosUrl = function(imageObjects) {
-        console.log(imageObjects);
         $rootScope.photoArray = [];
 
         angular.forEach(imageObjects.data, function(value, key){
             FB.api("/" + value.id + "/picture?access_token=" +
             $rootScope.facebookToken, function (response) {
                 if (response) {
-                    console.log(response)
                     var photo = {}
                     photo.url = response.data.url
                     photo.selected = false
@@ -154,8 +138,6 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
 
         var imageElement = document.getElementById('image-' + index);
         var popupElement = document.getElementById('popup-' + index);
-
-        console.log(isVisibleOnViewPort(element))
     };
 
     $scope.onMouseLeave = function(index) {

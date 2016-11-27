@@ -9,6 +9,7 @@
  */
 whatsYourPic.controller('AuthCtrl', function($window, $rootScope, $scope, $q,
 localStorageService) {
+	console.log('auth')
 
 	$scope.storageType = 'Local storage'
 

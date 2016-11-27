@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/angular-google-places-autocomplete/src/autocomplete.js',
       'bower_components/angular-google-places-autocomplete/dist/autocomplete.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/angular-instagram-api-factory/dist/angular-instagram-api-factory.min.js',
       // endbower
       "app/scripts/**/*.js",
       "test/mock/**/*.js",

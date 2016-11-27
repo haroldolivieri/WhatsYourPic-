@@ -16,7 +16,8 @@
     'LocalStorageModule',
     'smoothScroll',
     'google.places',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'jtt_instagram'
 ]);
 
 whatsYourPic.config(function ($routeProvider) {
