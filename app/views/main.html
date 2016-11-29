@@ -68,7 +68,8 @@
                       <span class="glyphicon glyphicon-ok" aria-hidden="true"/>
                   </div>
               </a>
-              <img id="popup-{{$index}}" ng-src="{{photo.url}}" class="ci-img-onHover" ng-show="photo.onHover" ng-click="selectImage($index)">
+              <img id="popup-{{$index}}" ng-src="{{photo.url}}" class="ci-img-onHover"
+               ng-show="photo.onHover" ng-click="selectImage($index)">
             </div>
           </div>
         </div>
@@ -100,7 +101,7 @@
                     type="text" class="ci-form-full" placeholder="Localização">
                 </div>
 
-                <div class="col-xs-6 col-sm-8">
+                <div class="col-xs-8 col-sm-8">
                     <my-datepicker dt="month"
                      datepickermode="month"
                      minmode="month"
