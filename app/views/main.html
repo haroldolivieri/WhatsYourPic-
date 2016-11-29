@@ -1,4 +1,4 @@
-<div>
+<div class="ci-box">
 
     <!-- Header -->
     <div class="ci-titlebox col-xs-12 col-sm-12" id="top">
@@ -15,9 +15,9 @@
                 <h3>Biblioteca de Fotos</h3>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
-                <button ng-click="facebookLogin()">
+                <button ng-click="facebookLogin()" ng-class="selectedButtonFacebook ? 'ci-button-activated' : ' '">
                     <span>
-                        <img src="images/facebook-logo.svg" alt="facebook"/>
+                        <img ng-src="{{selectedButtonFacebook && 'images/facebook-logo-white.svg' || 'images/facebook-logo-black.svg'}}" alt="facebook"/>
                         <span>Facebook</span>
                     </span>
                 </button>
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="hidden-xs hidden-sm">
+        <div class="hidden-xs hidden-sm ci-aboutbox-parent">
             <div class="ci-aboutbox">
                 <h3><u>Sobre o projeto</u></h3>
                 <!-- <p>Projeto desenvolvido por Haroldo Olivieri para o projeto de
@@ -84,7 +84,7 @@
     <!-- Right-Panel -->
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-5 ci-rightPanel" id="form">
 
-        <div class="hidden-xs hidden-sm col-md-12 col-lg-12 ci-right-bigImage">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-bigImage">
             <img class="img-responsive" ng-src="{{selectedImage}}" alt="">
         </div>
 

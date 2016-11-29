@@ -15,11 +15,13 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
     $scope.locationInput = ""
 
     $rootScope.selectedImageCheck = false
-    $rootScope.facebookUserId = localStorageService.get('fbUserId')
-    $rootScope.facebookToken = localStorageService.get('fbToken')
+    $rootScope.selectedButtonFacebook = false;
+    $rootScope.facebookUserId = localStorageService.get('fbUserId');
+    $rootScope.facebookToken = localStorageService.get('fbToken');
 
     $(document).on('fbload', function(){
         $rootScope.getFacebookPhotosIds()
+
     });
 
     $rootScope.getFacebookPhotosIds = function() {
@@ -95,6 +97,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
                     photo.onHover = false
                     $rootScope.$apply(function () {
                         $rootScope.photoArray.push(photo);
+                        $rootScope.selectedButtonFacebook = true;
                     });
                 }
             });

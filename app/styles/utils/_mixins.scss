@@ -159,4 +159,9 @@
       @content;
     }
   }
+  @else if $breakpoint == "minHeight" {
+    @media (max-height: 200px) {
+      @content;
+    }
+  }
 }

@@ -1,6 +1,12 @@
 .ci-socialButtons {
 
   display: block;
+  padding: 0px 15px;
+  background: white;
+
+  > div {
+    padding: 0px;
+  }
 
   button {
 
@@ -15,13 +21,19 @@
     display: block;
     height: 60px;
     width: 100%;
-    max-width: 225px;
+    // max-width: 225px;
     font-size: 20px;
+    margin: 0 auto;
     margin-bottom: 25px;
     position: relative;
     text-align: center;
     padding-top: 6px;
     position: relative;
+
+    &.ci-button-activated {
+      background: black;
+      color: white;
+    }
 
 
     span:first-child {
@@ -57,7 +69,7 @@
       text-align: left;
       margin-bottom: 15px;
       span:first-child {
-        padding-left: 30px;
+        padding-left: 15px;
         text-align: left;
         span {
           display: inline;
