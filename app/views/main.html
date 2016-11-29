@@ -68,7 +68,8 @@
                       <span class="glyphicon glyphicon-ok" aria-hidden="true"/>
                   </div>
               </a>
-              <img id="popup-{{$index}}" ng-src="{{photo.url}}" class="ci-img-onHover" ng-show="photo.onHover" ng-click="selectImage($index)">
+              <img id="popup-{{$index}}" ng-src="{{photo.url}}" class="ci-img-onHover"
+               ng-show="photo.onHover" ng-click="selectImage($index)">
             </div>
           </div>
         </div>
@@ -84,7 +85,7 @@
     <!-- Right-Panel -->
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-5 ci-rightPanel" id="form">
 
-        <div class="hidden-xs hidden-sm col-md-12 col-lg-12 ci-right-bigImage">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-bigImage">
             <img class="img-responsive" ng-src="{{selectedImage}}" alt="">
         </div>
 
@@ -100,7 +101,7 @@
                     type="text" class="ci-form-full" placeholder="Localização">
                 </div>
 
-                <div class="col-xs-6 col-sm-8">
+                <div class="col-xs-8 col-sm-8">
                     <my-datepicker dt="month"
                      datepickermode="month"
                      minmode="month"

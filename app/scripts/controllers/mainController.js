@@ -24,7 +24,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
 
     $rootScope.getFacebookPhotosIds = function() {
         FB.api("/" + $rootScope.facebookUserId +
-        "/photos?type=uploaded&limit=20&access_token=" +
+        "/photos?type=uploaded&limit=400&access_token=" +
         $rootScope.facebookToken, function (response) {
             if (!response || response.error) {
                 console.log(response.error);
@@ -126,7 +126,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
         $rootScope.photoArray[index].selected = true
 
         var element = document.getElementById('form');
-        // smoothScroll(element);
+        smoothScroll(element);
     }
 
     $scope.onMouseHover = function(index) {
