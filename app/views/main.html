@@ -76,7 +76,7 @@
 
         <div class="col-xs-12 col-sm-12 ci-grid-empty" ng-if="!checkIfHasImages()">
             <div>
-                <h3>Para começarmos, </br> faça login na plataforma à sua escolha :)</h3>
+                <h4>nada carregado ainda :(</h4>
             </div>
         </div>
     </div>
@@ -88,10 +88,10 @@
             <img class="img-responsive" ng-src="{{selectedImage}}" alt="">
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-bigImage" ng-if="checkIfHasImages() && selectedImage=='empty'">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-bigImage" ng-if="selectedImage=='empty'">
             <div>
-                    <h2 class="col-xs-12 col-sm-12">Selecione uma foto que te traga boas lembranças!</h2>
-                    <h3 class="col-xs-8 col-sm-8">Caso queira enviar mais de uma, fique abbr vontade para enviar novamente.</h3>
+                    <h2 class="col-xs-12 col-sm-12">Selecione uma foto de suas redes sociais!</h2>
+                    <h3 class="col-xs-8 col-sm-8">Caso queira selecionar várias, fique a vontade para enviar novamente.</h3>
                     <h3 class="col-xs-8 col-sm-8">Quanto mais melhor! ;)</h3>
             </div>
         </div>
