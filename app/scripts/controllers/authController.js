@@ -21,7 +21,7 @@ localStorageService) {
 		$scope.storageType = 'Cookie'
 	}
 
-    $scope.facebookLogin = function() {
+    $rootScope.facebookLogin = function() {
 		if(!$window.FB) {
 			return;
 		}

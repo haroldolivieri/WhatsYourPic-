@@ -17,7 +17,10 @@
     'smoothScroll',
     'google.places',
     'ui.bootstrap',
-    'jtt_instagram'
+    'jtt_instagram',
+    'firebase',
+    'angular-momentjs',
+    'ngToast'
 ]);
 
 whatsYourPic.config(function ($routeProvider) {

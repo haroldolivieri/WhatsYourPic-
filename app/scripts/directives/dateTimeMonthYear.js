@@ -35,15 +35,15 @@ function DatePickerController($scope) {
     }
 
     if ($scope.mindate) {
-        vm.MinDate = new Date($scope.mindate);
+        vm.MinDate = new Date($scope.mindate).toLocaleDateString("pt-BR");
     } else {
-        vm.MinDate = new Date('1000/01/01');
+        vm.MinDate = new Date('1000/01/01').toLocaleDateString("pt-BR");
     }
 
     if ($scope.maxdate) {
-        vm.MaxDate = new Date($scope.maxdate);
+        vm.MaxDate = new Date($scope.maxdate).toLocaleDateString("pt-BR");
     } else {
-        vm.MaxDate = new Date('9999/12/31');
+        vm.MaxDate = new Date('9999/12/31').toLocaleDateString("pt-BR");
     }
 
     vm.dateOptions = {
@@ -55,7 +55,7 @@ function DatePickerController($scope) {
 
     vm.openCalendar = function () {
         if (!$scope.dt) {
-            $scope.dt = new Date(Date.now());
+            $scope.dt = new Date(Date.now()).toLocaleDateString("pt-BR");
         }
         vm.dateOptions = {
             datepickerMode: vm.DatepickerMode,
@@ -84,7 +84,7 @@ function DatePickerController($scope) {
     };
 
     function refreshDate(cnt) {
-        var buf = new Date($scope.dt);
+        var buf = new Date($scope.dt).toLocaleDateString("pt-BR");
         var bufDate = buf.getDate();
         var bufMonth = buf.getMonth();
         var bufYear = buf.getFullYear();
