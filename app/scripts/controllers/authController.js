@@ -7,9 +7,12 @@
  * # AuthCtrl
  * Controller of the whatsYourPic
  */
-whatsYourPic.controller('AuthCtrl', function($window, $rootScope, $scope, $q,
-localStorageService) {
+whatsYourPic.controller('AuthCtrl', function($window, $rootScope, $scope,
+localStorageService, ngProgressFactory) {
 	console.log('auth');
+
+	$rootScope.progressbar = ngProgressFactory.createInstance();
+	$rootScope.progressbar.setColor("#000")
 
 	$scope.storageType = 'Local storage'
 
@@ -21,15 +24,22 @@ localStorageService) {
 		$scope.storageType = 'Cookie'
 	}
 
-    $scope.facebookLogin = function() {
+    $rootScope.facebookLogin = function() {
+
+		if ($rootScope.facebookToken && $rootScope.facebookUserId) {
+			return;
+		}
+
 		if(!$window.FB) {
 			return;
 		}
 
-		$rootScope.loading = true;
+		$rootScope.progressbar.start();
+		$rootScope.progressbar.color("#000");
 		FB.login(function (response) {
-			$rootScope.loading = false;
 			if (response.authResponse) {
+				$rootScope.progressbar.set(10);
+
                 $rootScope.facebookToken = response.authResponse.accessToken;
                 $rootScope.facebookUserId = response.authResponse.userID;
 
@@ -38,6 +48,7 @@ localStorageService) {
 
                 $rootScope.getFacebookPhotosIds();
 			} else {
+				$rootScope.progressbar.complete();
 				response.customMsg = 'Não foi possível logar com o Facebook.';
 			}
 		}, {scope: 'user_photos'});

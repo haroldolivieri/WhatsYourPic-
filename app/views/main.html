@@ -8,7 +8,9 @@
         </h1>
     </div>
 
+
     <!-- Left-Panel -->
+    <toast></toast>
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2 ci-leftPanel">
         <div class="ci-socialButtons row" ng-controller="AuthCtrl">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -22,19 +24,19 @@
                     </span>
                 </button>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
-                <button>
-                    <span>
-                        <img src="images/flickr-logo.svg" alt="flickr"/>
-                        <span>Flickr</span>
+            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12" style="opacity: 0.2; filter: alpha(opacity=20);">
+                <button style="cursor:not-allowed">
+                    <span style="cursor:not-allowed">
+                        <img style="cursor:not-allowed" src="images/flickr-logo.svg" alt="flickr"/>
+                        <span style="cursor:not-allowed">Flickr</span>
                     </span>
                 </button>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
-                <button>
-                    <span>
-                        <img src="images/instagram-logo.svg" alt="instagram"/>
-                        <span>Instagram</span>
+            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12" style="opacity: 0.2; filter: alpha(opacity=20);">
+                <button style="cursor:not-allowed">
+                    <span style="cursor:not-allowed">
+                        <img src="images/instagram-logo.svg" alt="instagram" style="cursor:not-allowed"/>
+                        <span style="cursor:not-allowed">Instagram</span>
                     </span>
                 </button>
             </div>
@@ -98,21 +100,20 @@
 
         <div class="col-xs-12 col-sm-12 ci-right-form" ng-if="selectedImage!='empty'">
             <div class="ci-form-inline form-inline row">
-
                 <div class="col-xs-12 col-sm-12">
                     <h3>Dados da imagem</h3>
                 </div>
 
                 <div class="col-xs-12 col-sm-12">
-                    <input g-places-autocomplete ng-model="locationInput"
-                    type="text" class="ci-form-full" placeholder="Localização">
+                    <input g-places-autocomplete ng-model="form.location"
+                    id="location" type="text" class="ci-form-full" placeholder="Localização">
                 </div>
 
                 <div class="col-xs-8 col-sm-8">
-                    <my-datepicker dt="month"
-                    datepickermode="month"
-                    minmode="month"
-                    datestyle="MMMM yyyy"/>
+                    <my-datepicker dt="form.date"
+                        datepickermode="month"
+                        minmode="month"
+                        datestyle="MMMM yyyy"/>
                 </div>
 
                 <div class="col-xs-4 col-sm-4">
