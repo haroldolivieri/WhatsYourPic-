@@ -40,6 +40,9 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/angular-momentjs/angular-momentjs.js',
       'bower_components/ngToast/dist/ngToast.js',
+      'bower_components/ngprogress/build/ngprogress.min.js',
+      'bower_components/sweetalert/dist/sweetalert.min.js',
+      'bower_components/ngSweetAlert/SweetAlert.js',
       // endbower
       "app/scripts/**/*.js",
       "test/mock/**/*.js",

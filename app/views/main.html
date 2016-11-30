@@ -24,19 +24,19 @@
                     </span>
                 </button>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
-                <button>
-                    <span>
-                        <img src="images/flickr-logo.svg" alt="flickr"/>
-                        <span>Flickr</span>
+            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12" style="opacity: 0.2; filter: alpha(opacity=20);">
+                <button style="cursor:not-allowed">
+                    <span style="cursor:not-allowed">
+                        <img style="cursor:not-allowed" src="images/flickr-logo.svg" alt="flickr"/>
+                        <span style="cursor:not-allowed">Flickr</span>
                     </span>
                 </button>
             </div>
-            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12">
-                <button>
-                    <span>
-                        <img src="images/instagram-logo.svg" alt="instagram"/>
-                        <span>Instagram</span>
+            <div class="col-xs-4 col-sm-4 col-md-12 col-lg-12" style="opacity: 0.2; filter: alpha(opacity=20);">
+                <button style="cursor:not-allowed">
+                    <span style="cursor:not-allowed">
+                        <img src="images/instagram-logo.svg" alt="instagram" style="cursor:not-allowed"/>
+                        <span style="cursor:not-allowed">Instagram</span>
                     </span>
                 </button>
             </div>
@@ -61,19 +61,19 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 ci-grid-parent">
 
         <div class="col-xs-12 col-sm-12 ci-grid" ng-if="checkIfHasImages()">
-          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3" ng-repeat="photo in photoArray track by $index">
-            <div class="ci-grid-helper"></div>
-            <div class="ci-grid-item">
-              <a id="image-{{$index}}" ng-click="selectImage($index)">
-                  <img class="" ng-src="{{photo.url}}">
-                  <div class="ci-grid-itemChecked" ng-if="photo.selected">
-                      <span class="glyphicon glyphicon-ok" aria-hidden="true"/>
-                  </div>
-              </a>
-              <img id="popup-{{$index}}" ng-src="{{photo.url}}" class="ci-img-onHover"
-               ng-show="photo.onHover" ng-click="selectImage($index)">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3" ng-repeat="photo in photoArray track by $index">
+                <div class="ci-grid-helper"></div>
+                <div class="ci-grid-item">
+                    <a id="image-{{$index}}" ng-click="selectImage($index)">
+                        <img class="" ng-src="{{photo.url}}">
+                        <div class="ci-grid-itemChecked" ng-if="photo.selected">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"/>
+                        </div>
+                    </a>
+                    <img id="popup-{{$index}}" ng-src="{{photo.url}}" class="ci-img-onHover"
+                    ng-show="photo.onHover" ng-click="selectImage($index)">
+                </div>
             </div>
-          </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 ci-grid-empty" ng-if="!checkIfHasImages()">
@@ -90,11 +90,11 @@
             <img class="img-responsive" ng-src="{{selectedImage}}" alt="">
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-bigImage" ng-if="selectedImage=='empty'">
-            <div>
-                    <h2 class="col-xs-12 col-sm-12">Selecione uma foto de suas redes sociais!</h2>
-                    <h3 class="col-xs-8 col-sm-8">Caso queira selecionar várias, fique a vontade para enviar novamente.</h3>
-                    <h3 class="col-xs-8 col-sm-8">Quanto mais melhor! ;)</h3>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-form" ng-if="selectedImage=='empty'">
+            <div class="ci-right-description">
+                <h2>Selecione uma foto de suas redes sociais!</h2>
+                <h3>Caso queira selecionar várias,<br/>fique a vontade para enviar novamente.</h3>
+                <h3>Quanto mais melhor! ;)</h3>
             </div>
         </div>
 
@@ -105,16 +105,15 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-12">
-                    <input g-places-autocomplete ng-model="locationInput"
+                    <input g-places-autocomplete ng-model="form.location"
                     id="location" type="text" class="ci-form-full" placeholder="Localização">
                 </div>
 
                 <div class="col-xs-8 col-sm-8">
-                    <my-datepicker dt="date"
-                    id="date"
-                     datepickermode="month"
-                     minmode="month"
-                     datestyle="MMMM yyyy"/>
+                    <my-datepicker dt="form.date"
+                        datepickermode="month"
+                        minmode="month"
+                        datestyle="MMMM yyyy"/>
                 </div>
 
                 <div class="col-xs-4 col-sm-4">
@@ -125,7 +124,7 @@
         </div>
     </div>
 
-    <div class="visible-xs-block visible-sm-block">
+    <div class="visible-xs-block visible-sm-block ci-footer-mobile">
         <div class="col-xs-6">
             <h3>Projeto acadêmico</h3>
             <img src="images/dad-logo.svg" alt="puc-rio dad"/ height="70" class="ci-aboutImg">

@@ -4,6 +4,11 @@
   padding-top: 20px;
 }
 
+.ci-footer-mobile {
+  position: relative;
+  bottom: 15px;
+}
+
 
 .ci-titlebox {
   * {
@@ -17,8 +22,8 @@
   z-index: 10;
 
   h1 {
-    margin: -30px;
-    padding: 30px;
+    // margin: -30px;
+    padding: 15px;
     background: white;
   }
 
@@ -55,6 +60,19 @@
   margin-bottom: 50px;
   padding: 0px;
 
+  .ci-right-description {
+    padding: 0px 15px;
+    margin-bottom: 30px;
+    text-align: center;
+    h2 {
+      margin: 0px;
+    }
+    h3 {
+      font-family: "sf_display_light";
+      margin: 0px;
+      margin-top: 20px;
+    }
+  }
 
   .ci-right-bigImage {
     display: block;
@@ -112,6 +130,11 @@
     br {
       display: block;
     }
+
+    h1 {
+      margin: -30px;
+      padding: 30px;
+    }
   }
 
   .ci-container {
@@ -136,6 +159,10 @@
     top: 0;
     bottom: 0;
     padding: $topDistance 0px 30px;
+
+    .ci-right-description {
+      text-align: left;
+    }
 
     .ci-right-bigImage {
       margin: 0px;

@@ -19,7 +19,7 @@ whatsYourPic.directive('myDatepicker', function () {
 
 DatePickerController.$inject = ['$scope'];
 
-function DatePickerController($scope) {
+function DatePickerController($scope, $rootScope) {
 
     var vm = this;
     if ($scope.datepickermode) {

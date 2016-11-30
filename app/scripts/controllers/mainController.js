@@ -7,10 +7,11 @@
  * # MainCtrl
  * Controller of the whatsYourPic
  */
-whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
+whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     smoothScroll, localStorageService, $firebaseObject, $firebaseAuth,
-    $moment, $firebaseArray, ngToast) {
-    console.log('main')
+    $moment, $firebaseArray, ngToast, ngProgressFactory) {
+
+    $scope.progressbar = ngProgressFactory.createInstance();
 
     var ref = firebase.database().ref();
     var auth = $firebaseAuth();
@@ -21,13 +22,16 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
         console.log(error);
     });
 
-    $scope.locationInput = ""
-    $scope.date = ""
+    $scope.form = {}
     $rootScope.selectedImage = "empty"
     $rootScope.selectedImageCheck = false
     $rootScope.selectedButtonFacebook = false;
     $rootScope.facebookUserId = localStorageService.get('fbUserId');
     $rootScope.facebookToken = localStorageService.get('fbToken');
+
+    if ($rootScope.facebookUserId && $rootScope.facebookToken) {
+        $rootScope.selectedButtonFacebook = true;
+    }
 
     $(document).on('fbload', function(){
         $rootScope.getFacebookPhotosIds()
@@ -38,11 +42,18 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
         "/photos?type=uploaded&limit=400&access_token=" +
         $rootScope.facebookToken, function (response) {
             if (!response || response.error) {
-                console.log(response.error);
+                $rootScope.progressbar.complete();
+
                 if (response.error.code == 190) {
+                    $rootScope.selectedButtonFacebook = false;
+                    $rootScope.facebookUserId = "";
+                    $rootScope.facebookToken = "";
+                    localStorageService.set('fbToken', $rootScope.facebookToken)
+                    localStorageService.set('fbUserId', $rootScope.facebookUserId)
                     $rootScope.facebookLogin()
                 }
             } else {
+                $rootScope.progressbar.set(40);
                 getFacebookPhotosUrl(response);
             }
         });
@@ -78,14 +89,14 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
         $rootScope.photoArray[index].selected = true
 
         var element = document.getElementById('form');
-        smoothScroll(element);
+        // smoothScroll(element);
     }
 
-    $scope.$watch('date', function() {
+    $scope.$watch('form.date', function() {
         validateFields()
     });
 
-    $scope.$watch('locationInput', function() {
+    $scope.$watch("form.location",function() {
         validateFields()
     });
 
@@ -94,7 +105,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
     });
 
     var validateFields = function() {
-        if ($scope.date && $scope.locationInput && $rootScope.selectedImage) {
+        if ($scope.form.date && $scope.form.location && $rootScope.selectedImage != "empty") {
             console.log('validateButton')
         } else {
             console.log('invalidateButton')
@@ -102,37 +113,37 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
     }
 
     $scope.sendForm = function() {
-        getLocation();
-
+        console.log($scope.form.date)
         if ($rootScope.selectedImage == "empty") {
             showCustomToast("Selecione uma das fotos");
             return;
         }
 
-        if (!$scope.locationInput) {
+        if (!$scope.form.location || $scope.form.location == undefined) {
             showCustomToast("Entre com a localização onde a foto foi tirada");
             document.getElementById("location").focus();
             return;
         }
 
-        if (!$scope.date) {
+        if (!$scope.form.date || $scope.form.date == undefined) {
             showCustomToast("Preencha com a data aproximada");
-            document.getElementById("date").focus();
             return;
         }
 
         var refForms = ref.child("crowdSourcing")
         var forms = $firebaseArray(refForms)
-        var createdAt = ($moment().unix())*1000
 
         forms.$add({
-            location : $scope.location,
-            month : $moment($scope.date).format("MMMM"),
-            year: $moment($scope.date).format("YYYY"),
+            location : getLocation(),
+            month : $moment($scope.form.date).format("MMMM"),
+            year: $moment($scope.form.date).format("YYYY"),
             imageUrl: $rootScope.selectedImage,
-            createdAt : createdAt
+            createdAt : ($moment().unix())*1000
         }).then(function(ref) {
-            console.log("added record with id " + ref.path.o[1])
+            console.log("added record with id " + ref.path.o[1]);
+            $rootScope.selectedImage = "empty";
+            $scope.form = {};
+
         });
     }
 
@@ -145,18 +156,26 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
 
     var getFacebookPhotosUrl = function(imageObjects) {
         $rootScope.photoArray = [];
+        var count = imageObjects.data.length;
 
+        var loadedCount = 0
         angular.forEach(imageObjects.data, function(value, key){
             FB.api("/" + value.id + "/picture?access_token=" +
             $rootScope.facebookToken, function (response) {
                 if (response) {
+                    loadedCount ++;
+                    $rootScope.progressbar.set(40 + loadedCount*60/count);
+
+                    if (loadedCount == count) {
+                        $rootScope.progressbar.complete()
+                    }
+
                     var photo = {}
                     photo.url = response.data.url
                     photo.selected = false
                     photo.onHover = false
                     $rootScope.$apply(function () {
                         $rootScope.photoArray.push(photo);
-                        $rootScope.selectedButtonFacebook = true;
                     });
                 }
             });
@@ -165,15 +184,16 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $q, $window,
 
     var getLocation = function() {
         var location = {}
-        location.name = $scope.locationInput
 
-        if ($scope.locationInput.formatted_address) {
-            location.name = $scope.locationInput.formatted_address
-            location.url = $scope.locationInput.url
-            if ($scope.locationInput.geometry) {
-                location.latitude = $scope.locationInput.geometry.location.lat()
-                location.longitude = $scope.locationInput.geometry.location.lng()
+        if ($scope.form.location.formatted_address) {
+            location.name = $scope.form.location.formatted_address
+            location.url = $scope.form.location.url
+            if ($scope.form.location.geometry) {
+                location.latitude = $scope.form.location.geometry.location.lat()
+                location.longitude = $scope.form.location.geometry.location.lng()
             }
         }
+
+        return location;
     }
 });

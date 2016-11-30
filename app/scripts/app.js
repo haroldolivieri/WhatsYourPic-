@@ -20,10 +20,12 @@
     'jtt_instagram',
     'firebase',
     'angular-momentjs',
-    'ngToast'
+    'ngToast',
+    'ngProgress'
 ]);
 
 whatsYourPic.config(function ($routeProvider) {
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
