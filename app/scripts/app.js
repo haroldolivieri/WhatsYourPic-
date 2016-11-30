@@ -40,7 +40,7 @@ whatsYourPic.config(function ($routeProvider) {
 whatsYourPic.run(['$rootScope', '$window', function($rootScope, $window) {
     $window.fbAsyncInit = function() {
         FB.init({
-            appId: 1826204104292904,
+            appId: facebookId,
             cookie: true,
             xfbml: true,
             version: 'v2.4'
