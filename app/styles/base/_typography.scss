@@ -1,6 +1,11 @@
 h1 {
-  font-family: "sf_display_regular";
+  font-family: "sf_display_bold";
   font-size: 24px;
+}
+
+h2 {
+  font-family: "sf_display_regular";
+  font-size: 20px;
 }
 
 h3 {
@@ -16,6 +21,9 @@ h3 {
   h1 {
     font-size: 26px;
   }
+  h2 {
+    font-size: 22px;
+  }
   h3 {
     font-size: 18px;
   }
@@ -24,6 +32,9 @@ h3 {
   h1 {
     font-size: 32px;
   }
+  h2 {
+    font-size: 28px;
+  }
   h3 {
     font-size: 22px;
   }
@@ -31,6 +42,9 @@ h3 {
 @include respond-to(large) {
   h1 {
     font-size: 48px;
+  }
+  h2 {
+    font-size: 28px;
   }
   h3 {
     font-size: 22px;
