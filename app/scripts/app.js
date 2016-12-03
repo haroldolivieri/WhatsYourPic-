@@ -21,7 +21,8 @@
     'firebase',
     'angular-momentjs',
     'ngToast',
-    'ngProgress'
+    'ngProgress',
+    'oitozero.ngSweetAlert'
 ]);
 
 whatsYourPic.config(function ($routeProvider) {

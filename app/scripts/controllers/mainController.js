@@ -9,7 +9,7 @@
  */
 whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     smoothScroll, localStorageService, $firebaseObject, $firebaseAuth,
-    $moment, $firebaseArray, ngToast, ngProgressFactory) {
+    $moment, $firebaseArray, ngToast, ngProgressFactory, SweetAlert) {
 
     $scope.progressbar = ngProgressFactory.createInstance();
 
@@ -140,6 +140,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
             imageUrl: $rootScope.selectedImage,
             createdAt : ($moment().unix())*1000
         }).then(function(ref) {
+            SweetAlert.swal("Obrigado por participar!", "Informações enviadas com sucesso! Fique a vontade para enviar quantas desejar ;)", "success");
             console.log("added record with id " + ref.path.o[1]);
             $rootScope.selectedImage = "empty";
             $scope.form = {};
