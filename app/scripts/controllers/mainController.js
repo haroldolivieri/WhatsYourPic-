@@ -25,7 +25,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     $scope.form = {}
     $rootScope.selectedImage = "empty"
     $rootScope.selectedImageCheck = false
-    $rootScope.selectedButtonFacebook = false;
+
     $rootScope.facebookUserId = localStorageService.get('fbUserId');
     $rootScope.facebookToken = localStorageService.get('fbToken');
 
@@ -53,6 +53,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
                     $rootScope.facebookLogin()
                 }
             } else {
+                $rootScope.selectedButtonFacebook = true;
                 $rootScope.progressbar.set(40);
                 getFacebookPhotosUrl(response);
             }

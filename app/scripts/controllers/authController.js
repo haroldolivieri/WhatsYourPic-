@@ -35,7 +35,7 @@ localStorageService, ngProgressFactory) {
 		}
 
 		$rootScope.progressbar.start();
-		$rootScope.progressbar.color("#000");
+		$rootScope.progressbar.setColor("#000");
 		FB.login(function (response) {
 			if (response.authResponse) {
 				$rootScope.progressbar.set(10);
