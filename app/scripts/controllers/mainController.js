@@ -25,6 +25,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     $scope.form = {}
     $rootScope.selectedImage = "empty"
     $rootScope.selectedImageCheck = false
+    $rootScope.navigationHelper = false
 
     $rootScope.facebookUserId = localStorageService.get('fbUserId');
     $rootScope.facebookToken = localStorageService.get('fbToken');
@@ -88,6 +89,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
 
         $rootScope.selectedImage = $rootScope.photoArray[index].url
         $rootScope.photoArray[index].selected = true
+        $rootScope.navigationHelper = true
 
         var element = document.getElementById('form');
         // smoothScroll(element);
@@ -107,9 +109,9 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
 
     var validateFields = function() {
         if ($scope.form.date && $scope.form.location && $rootScope.selectedImage != "empty") {
-            console.log('validateButton')
+            $rootScope.validateSubmit = true;
         } else {
-            console.log('invalidateButton')
+            $rootScope.validateSubmit = false;
         }
     }
 
