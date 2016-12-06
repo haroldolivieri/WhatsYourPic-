@@ -26,6 +26,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     $rootScope.selectedImage = "empty"
     $rootScope.selectedImageCheck = false
     $rootScope.navigationHelper = false
+    $scope.canShowFooter = false;
 
     $rootScope.facebookUserId = localStorageService.get('fbUserId');
     $rootScope.facebookToken = localStorageService.get('fbToken');
@@ -65,34 +66,32 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
         if (!$rootScope.urlArray) {
             return false;
         }
-        return $rootScope.urlArray.length > 0
-    }
-
-    $scope.selectImage = function(url) {
-        $rootScope.selectedImage = url
-        var element = document.getElementById('top');
-        smoothScroll(element);
+        return $rootScope.urlArray.length > 0;
     }
 
     $rootScope.checkIfHasImages = function() {
         if (!$rootScope.photoArray) {
             return false;
         }
-        return $rootScope.photoArray.length > 0
+        return $rootScope.photoArray.length > 0;
+    }
+
+    $scope.scrollToForm = function() {
+        var element = document.getElementById('form');
+        smoothScroll(element);
+        $scope.canShowFooter = false;
     }
 
     $scope.selectImage = function(index) {
         angular.forEach($rootScope.photoArray, function(value, key){
-            value.selected = false
-            value.onHover = false
+            value.selected = false;
+            value.onHover = false;
         });
 
-        $rootScope.selectedImage = $rootScope.photoArray[index].url
-        $rootScope.photoArray[index].selected = true
-        $rootScope.navigationHelper = true
-
-        var element = document.getElementById('form');
-        // smoothScroll(element);
+        $rootScope.selectedImage = $rootScope.photoArray[index].url;
+        $rootScope.photoArray[index].selected = true;
+        $rootScope.navigationHelper = true;
+        $scope.canShowFooter = true;
     }
 
     $scope.$watch('form.date', function() {
@@ -143,11 +142,16 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
             imageUrl: $rootScope.selectedImage,
             createdAt : ($moment().unix())*1000
         }).then(function(ref) {
-            SweetAlert.swal("Obrigado por participar!", "Informações enviadas com sucesso! Fique a vontade para enviar quantas desejar ;)", "success");
+            SweetAlert.swal("Obrigado por participar!", "Informações enviadas " +
+            "com sucesso! Fique a vontade para enviar quantas desejar ;)", "success");
             console.log("added record with id " + ref.path.o[1]);
             $rootScope.selectedImage = "empty";
+            $rootScope.selectedImageCheck = false;
+            angular.forEach($rootScope.photoArray, function(value, key){
+                value.selected = false;
+                value.onHover = false;
+            });
             $scope.form = {};
-
         });
     }
 
@@ -187,15 +191,21 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     }
 
     var getLocation = function() {
-        var location = {}
+        var location = undefined
 
         if ($scope.form.location.formatted_address) {
+            var location = {}
             location.name = $scope.form.location.formatted_address
             location.url = $scope.form.location.url
             if ($scope.form.location.geometry) {
                 location.latitude = $scope.form.location.geometry.location.lat()
                 location.longitude = $scope.form.location.geometry.location.lng()
             }
+        }
+
+        if (location == undefined) {
+            var location = {}
+            location.name = $scope.form.location
         }
 
         return location;
