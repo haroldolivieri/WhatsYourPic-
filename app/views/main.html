@@ -1,7 +1,7 @@
  <div class="ci-box">
 
     <!-- Navigation Helper -->
-    <a scroll-to="ci-preview" ng-if="navigationHelper">
+    <a ng-if="navigationHelper" ng-click="scrollToForm()" ng-show="selectedImage!='empty' && canShowFooter">
         <div class="ci-navigation-helper col-xs-12 col-sm-12 hidden-md hidden-lg">
 
             <span class="glyphicon glyphicon-triangle-bottom"></span>
@@ -146,5 +146,4 @@
             <h3>Sobre o projeto</h3>
         </div>
     </div>
-
 </div>
