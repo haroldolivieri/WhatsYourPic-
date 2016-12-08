@@ -55,18 +55,16 @@
             </div>
         </div>
 
-        <div class="hidden-xs hidden-sm ci-aboutbox-parent">
-            <div class="ci-aboutbox">
-                <h3><u>Sobre o projeto</u></h3>
-                <!-- <p>Projeto desenvolvido por Haroldo Olivieri para o projeto de
-                conclusão do curso de graduação de Design de Mídia Digital da PUC-Rio.
-                CrowdedInfo tem o objetivo de coletar o maior número de data sobre fotos,
-                sua localização e a suas relações com seus donos.</p> -->
-            </div>
-            <div>
-                <h3 class="ci-custom-h3">Projeto acadêmico</h3>
-                <img src="images/dad-logo.svg" alt="puc-rio dad" height="70" class="ci-aboutImg"/>
-            </div>
+        <div class="hidden-xs hidden-sm ci-aboutbox">
+            <h3><a class="ci-about" ng-click="showAbout = !showAbout">Sobre o projeto</a></h3>
+            <p ng-class="showAbout ? '' : 'hidden'">Projeto desenvolvido por Haroldo Olivieri para o projeto de conclusão do curso de graduação de Design de Mídia Digital da PUC-Rio. WhatsYourPic tem o objetivo de coletar o maior número de data sobre fotos, sua localização e a suas relações com seus donos.</p>
+        </div>
+    </div>
+
+    <div class="hidden-xs hidden-sm ci-aboutbox-parent">
+        <div>
+            <h3 class="ci-custom-h3">Projeto acadêmico</h3>
+            <img src="images/dad-logo.svg" alt="puc-rio dad" height="70" class="ci-aboutImg"/>
         </div>
     </div>
 
@@ -99,7 +97,7 @@
     <!-- Right-Panel -->
     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-5 ci-rightPanel" id="form">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-bigImage">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ci-right-bigImage" ng-if="selectedImage!='empty'">
             <img class="img-responsive" ng-src="{{selectedImage}}" alt="">
         </div>
 
@@ -143,7 +141,8 @@
             <img src="images/dad-logo.svg" alt="puc-rio dad"/ height="70" class="ci-aboutImg">
         </div>
         <div class="col-xs-6">
-            <h3>Sobre o projeto</h3>
+            <h3><a class="ci-about" ng-click="showAbout = !showAbout">Sobre o projeto</a></h3>
+            <p ng-class="showAbout ? '' : 'hidden'">Projeto desenvolvido por Haroldo Olivieri para o projeto de conclusão do curso de graduação de Design de Mídia Digital da PUC-Rio. WhatsYourPic tem o objetivo de coletar o maior número de data sobre fotos, sua localização e a suas relações com seus donos.</p>
         </div>
     </div>
 </div>

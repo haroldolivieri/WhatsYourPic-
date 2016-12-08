@@ -35,6 +35,20 @@ main {
   cursor: default;
 }
 
+input {
+  -webkit-touch-callout: all;
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+  -webkit-user-drag: all;
+  -khtml-user-drag: all;
+  -moz-user-drag: all;
+  -o-user-drag: all;
+  user-drag: all;
+}
+
 // [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
 //   display: none !important;
 // }
@@ -62,7 +76,7 @@ input[type="button"] {
 }
 
 a {
-    text-decoration: none !important;
+    text-decoration: none;
     color: inherit;
     cursor: pointer;
     * {

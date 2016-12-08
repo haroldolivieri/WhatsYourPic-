@@ -27,6 +27,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     $rootScope.selectedImageCheck = false
     $rootScope.navigationHelper = false
     $scope.canShowFooter = false;
+    $scope.showAbout = false;
 
     $rootScope.facebookUserId = localStorageService.get('fbUserId');
     $rootScope.facebookToken = localStorageService.get('fbToken');
