@@ -100,19 +100,19 @@
     margin: 0px;
     padding: 0px 15px;
     top: 0;
-    max-height: 65%;
-    min-height: 250px;
+    height: 65%;
+    // min-height: 250px;
     width: 100%;
-    margin-bottom: 30px;
 
     img {
       background-repeat: no-repeat;
       background-position: center;
       object-fit: contain;
       object-position: 50% 0%;
+      min-height: 100%;
+      max-height: 100%;
       min-width: 100%;
       max-width: 100%;
-      max-height: 65%;
       display: block !important;
 
       &[src="empty"] {
@@ -124,7 +124,7 @@
 
   .ci-right-form {
     margin: 0px;
-    padding: 10px 0px 30px;
+    padding: 10px 0px 0px;
     position: relative;
     left: 0px;
     bottom: 0px;
