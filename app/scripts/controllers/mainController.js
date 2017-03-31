@@ -9,11 +9,12 @@
  */
 whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     smoothScroll, localStorageService, $firebaseObject, $firebaseAuth,
-    $moment, $firebaseArray, ngToast, ngProgressFactory, SweetAlert) {
+    $moment, $firebaseArray, ngToast, ngProgressFactory, SweetAlert, $q, $http) {
 
     $scope.progressbar = ngProgressFactory.createInstance();
 
     var ref = firebase.database().ref();
+    var storageRef = firebase.storage().ref();
     var auth = $firebaseAuth();
 
     auth.$signInAnonymously().then(function(firebaseUser) {
@@ -22,11 +23,13 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
         console.log(error);
     });
 
+
     $scope.form = {}
     $rootScope.selectedImage = "empty"
     $rootScope.selectedImageCheck = false
     $rootScope.navigationHelper = false
     $scope.canShowFooter = false;
+    $scope.canClick = true;
 
     $rootScope.facebookUserId = localStorageService.get('fbUserId');
     $rootScope.facebookToken = localStorageService.get('fbToken');
@@ -115,7 +118,11 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     }
 
     $scope.sendForm = function() {
-        console.log($scope.form.date)
+
+        if ($scope.canClick == false) {
+            return;
+        }
+
         if ($rootScope.selectedImage == "empty") {
             showCustomToast("Selecione uma das fotos");
             return;
@@ -132,8 +139,8 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
             return;
         }
 
-        var refForms = ref.child("crowdSourcing")
-        var forms = $firebaseArray(refForms)
+        $scope.canClick = false
+        var forms = $firebaseArray(ref.child("crowdSourcing"))
 
         forms.$add({
             location : getLocation(),
@@ -142,9 +149,19 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
             imageUrl: $rootScope.selectedImage,
             createdAt : ($moment().unix())*1000
         }).then(function(ref) {
+            $scope.id = ref.path.o[1]
+            console.log("added record with id " + $scope.id);
+            return downloadImage($rootScope.selectedImage);
+        }).then(function(blob) {
+            return uploadPhoto(blob, $scope.id);
+        }).then(function() {
             SweetAlert.swal("Obrigado por participar!", "Informações enviadas " +
             "com sucesso! Fique a vontade para enviar quantas desejar ;)", "success");
-            console.log("added record with id " + ref.path.o[1]);
+        }).catch(function() {
+            SweetAlert.swal("Erro ao enviar sua foto, por favor, tente novamente", "error");
+        }).finally(function(){
+            $scope.canClick = true
+
             $rootScope.selectedImage = "empty";
             $rootScope.selectedImageCheck = false;
             angular.forEach($rootScope.photoArray, function(value, key){
@@ -153,6 +170,35 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
             });
             $scope.form = {};
         });
+    }
+
+    var downloadImage = function(url){
+        var deferred = $q.defer();
+        $http.get(url, {responseType: "arraybuffer"}).success(function(data){
+            var arrayBufferView = new Uint8Array( data );
+            var blob = new Blob( [ arrayBufferView ], { type: "image/png" } );
+            deferred.resolve(blob);
+        }).error(function(err, status){
+            deferred.reject(error);
+        })
+        return deferred.promise;
+    }
+
+    var uploadPhoto = function upload(file, uid) {
+        var deferred = $q.defer();
+        var fileRef = storageRef.child("images").child(uid);
+        var uploadTask = fileRef.put(file);
+
+        uploadTask.on('state_changed', function(snapshot){
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            $rootScope.progressbar.set(progress);
+        }, function(error) {
+            deferred.reject(error.code);
+        }, function() {
+            deferred.resolve(uploadTask.snapshot.downloadURL);
+        });
+
+        return deferred.promise;
     }
 
     var showCustomToast = function(message) {
