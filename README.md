@@ -1,12 +1,7 @@
-# crowded-info
+# WhatsYourPic?!
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.14.0.
+http://whatsyourpic.carioca.build
 
-## Build & development
+## Sobre o Projeto
 
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
+Projeto desenvolvido por Haroldo Olivieri para o projeto de conclusão do curso de graduação de Design de Mídia Digital da PUC-Rio. WhatsYourPic é a primeira fase de um projeto que tem por objetivo analisar informações previamente coletadas e criar uma forma interativa de visualização dos dados gerados.
