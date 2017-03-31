@@ -13,10 +13,10 @@
   position: fixed;
   bottom: 0px;
   left: 0px;
-  z-index: 555;
   width: 100%;
   background: rgba(255,255,255,0.9);
   height: 50px;
+  z-index: 150;
 
   span {
     line-height: 52px;
@@ -34,10 +34,10 @@
     padding: 0px;
   }
 
+  z-index: 100;
   margin: 0px 0px 30px 0px;
   padding: 0px;
   height: $titleBoxHeight;
-  z-index: 10;
 
   h1 {
     // margin: -30px;
@@ -53,17 +53,21 @@
 
 .ci-leftPanel {
   height: auto;
-
-  .ci-aboutbox-parent {
-    position: fixed;
-    bottom: 30px;
-    z-index: -3;
-  }
+  background: white;
+  z-index: 20;
 
   .ci-aboutbox {
     margin: 30px 0px;
-    max-width: 300px;
+    max-width: 250px;
   }
+
+}
+
+.ci-aboutbox-parent {
+  position: fixed;
+  left: 30px;
+  bottom: 30px;
+  z-index: -1;
 }
 
 .ci-grid-parent {
@@ -97,8 +101,7 @@
     margin: 0px;
     padding: 0px 15px;
     top: 0;
-    height: 65%;
-    // min-height: 250px;
+    height: 250px;
     width: 100%;
 
     img {
@@ -130,9 +133,8 @@
 }
 
 
-@include respond-to(small) {
+@include respond-to(small) { }
 
-}
 @include respond-to(medium) {
 
   .ci-container > div {
@@ -180,11 +182,13 @@
 
     .ci-right-description {
       text-align: left;
+      margin-bottom: 30px;
     }
 
     .ci-right-bigImage {
       margin: 0px;
       padding: 0px 15px;
+      height: 65%;
       display: block;
     }
     .ci-right-form {
@@ -193,6 +197,5 @@
   }
 
 }
-@include respond-to(large) {
 
-}
+@include respond-to(large) {}

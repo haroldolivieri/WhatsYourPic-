@@ -20,19 +20,33 @@ main {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
+  // -webkit-touch-callout: none;
+  // -webkit-user-select: none;
+  // -khtml-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+  // -webkit-user-drag: none;
+  // -khtml-user-drag: none;
+  // -moz-user-drag: none;
+  // -o-user-drag: none;
+  // user-drag: none;
 
   cursor: default;
+}
+
+input {
+  // -webkit-touch-callout: normal;
+  // -webkit-user-select: normal;
+  // -khtml-user-select: normal;
+  // -moz-user-select: normal;
+  // -ms-user-select: normal;
+  // user-select: normal;
+  // -webkit-user-drag: normal;
+  // -khtml-user-drag: normal;
+  // -moz-user-drag: normal;
+  // -o-user-drag: normal;
+  // user-drag: normal;
 }
 
 // [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -62,7 +76,7 @@ input[type="button"] {
 }
 
 a {
-    text-decoration: none !important;
+    text-decoration: none;
     color: inherit;
     cursor: pointer;
     * {
