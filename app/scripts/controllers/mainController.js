@@ -24,9 +24,9 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     });
 
     //Save all facebook url photos in firebase storage
-    //var refForms = ref.child("crowdSourcing")
-    //var forms = $firebaseArray(refForms)
-    //getImages(forms)
+    // var refForms = ref.child("crowdSourcing")
+    // var forms = $firebaseArray(refForms)
+    // getImages(forms)
     // function getImages(forms){
     //     $scope.forms = []
     //     forms.$loaded().then(function() {
@@ -175,7 +175,8 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
             return downloadImage($rootScope.selectedImage);
         }).then(function(blob) {
             return uploadPhoto(blob, $scope.id);
-        }).then(function() {
+        }).then(function(url) {
+            console.log(url)
             SweetAlert.swal("Obrigado por participar!", "Informações enviadas " +
             "com sucesso! Fique a vontade para enviar quantas desejar ;)", "success");
         }).catch(function() {
@@ -207,7 +208,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
 
     var uploadPhoto = function upload(file, uid) {
         var deferred = $q.defer();
-        var fileRef = storageRef.child("images").child(uid);
+        var fileRef = storageRef.child("images").child(uid + ".png");
         var uploadTask = fileRef.put(file);
 
         uploadTask.on('state_changed', function(snapshot){
@@ -216,6 +217,7 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
         }, function(error) {
             deferred.reject(error.code);
         }, function() {
+            console.log(uploadTask.snapshot)
             deferred.resolve(uploadTask.snapshot.downloadURL);
         });
 
