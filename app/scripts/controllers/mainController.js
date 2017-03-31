@@ -23,6 +23,26 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
         console.log(error);
     });
 
+    //Save all facebook url photos in firebase storage
+    //var refForms = ref.child("crowdSourcing")
+    //var forms = $firebaseArray(refForms)
+    //getImages(forms)
+    // function getImages(forms){
+    //     $scope.forms = []
+    //     forms.$loaded().then(function() {
+    //         angular.forEach(forms, function(value, key) {
+    //             downloadImage(value.imageUrl).then(function(blob) {
+    //                 console.log(blob)
+    //                 console.log(value.$id)
+    //                 return uploadPhoto(blob, value.$id);
+    //             }).then(function(url) {
+    //                 console.log("saved! url:" + url)
+    //             }).catch(function(error) {
+    //                 console.log(error)
+    //             })
+    //         });
+    //     });
+    // }
 
     $scope.form = {}
     $rootScope.selectedImage = "empty"
@@ -175,11 +195,11 @@ whatsYourPic.controller('MainCtrl', function($rootScope, $scope, $window,
     var downloadImage = function(url){
         var deferred = $q.defer();
         $http.get(url, {responseType: "arraybuffer"}).success(function(data){
-            var arrayBufferView = new Uint8Array( data );
+            var arrayBufferView = new Uint8Array(data);
             var blob = new Blob( [ arrayBufferView ], { type: "image/png" } );
             deferred.resolve(blob);
         }).error(function(err, status){
-            deferred.reject(error);
+            deferred.reject(err);
         })
         return deferred.promise;
     }
