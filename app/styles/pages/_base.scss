@@ -16,6 +16,7 @@
   width: 100%;
   background: rgba(255,255,255,0.9);
   height: 50px;
+  z-index: 150;
 
   span {
     line-height: 52px;
@@ -100,8 +101,7 @@
     margin: 0px;
     padding: 0px 15px;
     top: 0;
-    height: 65%;
-    // min-height: 250px;
+    height: 250px;
     width: 100%;
 
     img {
@@ -124,7 +124,7 @@
 
   .ci-right-form {
     margin: 0px;
-    padding: 10px 0px 0px;
+    padding: 10px 0px 30px;
     position: relative;
     left: 0px;
     bottom: 0px;
@@ -133,9 +133,8 @@
 }
 
 
-@include respond-to(small) {
+@include respond-to(small) { }
 
-}
 @include respond-to(medium) {
 
   .ci-container > div {
@@ -189,6 +188,7 @@
     .ci-right-bigImage {
       margin: 0px;
       padding: 0px 15px;
+      height: 65%;
       display: block;
     }
     .ci-right-form {
@@ -197,6 +197,5 @@
   }
 
 }
-@include respond-to(large) {
 
-}
+@include respond-to(large) {}
