@@ -14,7 +14,7 @@
     border-radius: 0px;
     padding: 0px;
     box-shadow: none;
-    font-size: 26px;
+    font-size: 22px;
     color: #000;
     width: auto;
     position: relative;
@@ -37,4 +37,12 @@
     color: black;
   }
 
+}
+
+@include respond-to(medium) {
+  .ci-form-inline {
+    input {
+      font-size: 26px;
+    }
+  }
 }
