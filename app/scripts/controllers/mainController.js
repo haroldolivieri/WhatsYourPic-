@@ -20,7 +20,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
 
     var refForms = ref.child("crowdSourcing")
     var forms = $firebaseArray(refForms)
-    sendImagesToClarifai(forms)
+    //sendImagesToClarifai(forms)
 
     function sendImagesToClarifai(forms) {
         $scope.forms = []
@@ -28,8 +28,8 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         auth.$signInAnonymously().then(function (firebaseUser) {
             forms.$loaded().then(function () {
                 angular.forEach(forms, function (value, key) {
-                    getUrlFromFirebaseImage(value.$id, value.location).then(function (response) {
-                        return uploadPhotoToClarifai(response.url, response.uid, response.location);
+                    getUrlFromFirebaseImage(value.$id, value.location, value.month, value.year).then(function (response) {
+                        return uploadPhotoToClarifai(response.url, response.uid, response.location, response.month, response.year);
                     }).then(function (response) {
                         return updateRow(response.uid, response.clarifaiId);
                     }).then(function () {
@@ -171,7 +171,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             return;
         }
 
-        if (!$scope.form.date || $scope.form.date == undefined) {
+        if (!$scope.form.date || $scope.form.date == undefined || $moment($scope.form.date).format("MMMM") == "Invalid date") {
             showCustomToast("Preencha com a data aproximada");
             return;
         }
@@ -193,9 +193,9 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         }).then(function (blob) {
             return uploadPhotoToFirebaseStorage(blob, $scope.id);
         }).then(function () {
-            return getUrlFromFirebaseImage($scope.id, $scope.location);
+            return getUrlFromFirebaseImage($scope.id, $scope.location, $moment($scope.form.date).format("MMMM"), $moment($scope.form.date).format("YYYY"));
         }).then(function (response) {
-            return uploadPhotoToClarifai(response.url, $scope.id, $scope.location);
+            return uploadPhotoToClarifai(response.url, $scope.id, $scope.location, $moment($scope.form.date).format("MMMM"), $moment($scope.form.date).format("YYYY"));
         }).then(function (response) {
             console.log(response.clarifaiId)
             return updateRow($scope.id, response.clarifaiId);
@@ -236,7 +236,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         return deferred.promise;
     }
 
-    var getUrlFromFirebaseImage = function (uid, location) {
+    var getUrlFromFirebaseImage = function (uid, location, month, year) {
         console.log(uid)
         var deferred = $q.defer();
 
@@ -244,7 +244,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             console.log(uid)
             storageRef.child("images").child(uid + ".png").getDownloadURL().then(function (url) {
                 console.log(uid)
-                deferred.resolve({url : url, uid: uid, location: location});
+                deferred.resolve({url : url, uid: uid, location: location, month : month, year : year});
             }).catch(function (error) {
                 deferred.reject(error);
             });
@@ -255,11 +255,10 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         return deferred.promise;
     };
 
-    var uploadPhotoToClarifai = function (url, uid, location) {
+    var uploadPhotoToClarifai = function (url, uid, location, month, year) {
         var deferred = $q.defer();
-
         console.log("CLaRIFAI")
-        app.inputs.create([{ url: url, id : uid, metadata: {firebaseId: uid, location : location}}]).then(
+        app.inputs.create([{ url: url, id : uid, metadata: {firebaseId: uid, location : location, date : { month : month, year : year }}}]).then(
             function (response) {
                 console.log("CLaRIFAI 2")
                 deferred.resolve({clarifaiId : response[0].id, uid: uid});
