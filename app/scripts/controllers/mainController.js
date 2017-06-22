@@ -20,21 +20,20 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
 
     var refForms = ref.child("crowdSourcing")
     var forms = $firebaseArray(refForms)
-    //sendImagesToClarifai(forms)
+    sendImagesToClarifai(forms)
 
     function sendImagesToClarifai(forms) {
         $scope.forms = []
 
         auth.$signInAnonymously().then(function (firebaseUser) {
             forms.$loaded().then(function () {
-
                 angular.forEach(forms, function (value, key) {
-                    getUrlFromFirebaseImage(value.$id).then(function (response) {
-                        return uploadPhotoToClarifai(response.url, response.uid);
+                    getUrlFromFirebaseImage(value.$id, value.location).then(function (response) {
+                        return uploadPhotoToClarifai(response.url, response.uid, response.location);
                     }).then(function (response) {
                         return updateRow(response.uid, response.clarifaiId);
                     }).then(function () {
-                        console.log("gravou no firebase");
+                        //GRAVOU NO FIREBASE
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -47,8 +46,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
 
     var updateRow = function (uid, clarifaiId) {
         var deferred = $q.defer();
-        console.log(uid)
-
+        
         ref.child("crowdSourcing").child(uid).on('value', function (snap) {
             var data = snap.val();
             data.sentToModel = true
@@ -180,6 +178,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
 
         $scope.canClick = false
         var forms = $firebaseArray(ref.child("crowdSourcing"))
+        $scope.location = getLocation();
 
         forms.$add({
             location: getLocation(),
@@ -194,9 +193,9 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         }).then(function (blob) {
             return uploadPhotoToFirebaseStorage(blob, $scope.id);
         }).then(function () {
-            return getUrlFromFirebaseImage($scope.id);
+            return getUrlFromFirebaseImage($scope.id, $scope.location);
         }).then(function (response) {
-            return uploadPhotoToClarifai(response.url, $scope.id);
+            return uploadPhotoToClarifai(response.url, $scope.id, $scope.location);
         }).then(function (response) {
             console.log(response.clarifaiId)
             return updateRow($scope.id, response.clarifaiId);
@@ -208,8 +207,8 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             SweetAlert.swal("Tivemos um problema :(",
                 "Houve um erro ao enviar sua foto, por favor, tente novamente", "error");
         }).finally(function () {
-            $scope.canClick = true
-
+            $scope.canClick = true;
+            $scope.location = {};
             $rootScope.selectedImage = "empty";
             $rootScope.selectedImageCheck = false;
             angular.forEach($rootScope.photoArray, function (value, key) {
@@ -237,7 +236,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         return deferred.promise;
     }
 
-    var getUrlFromFirebaseImage = function (uid) {
+    var getUrlFromFirebaseImage = function (uid, location) {
         console.log(uid)
         var deferred = $q.defer();
 
@@ -245,7 +244,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             console.log(uid)
             storageRef.child("images").child(uid + ".png").getDownloadURL().then(function (url) {
                 console.log(uid)
-                deferred.resolve({url : url, uid: uid});
+                deferred.resolve({url : url, uid: uid, location: location});
             }).catch(function (error) {
                 deferred.reject(error);
             });
@@ -256,11 +255,11 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         return deferred.promise;
     };
 
-    var uploadPhotoToClarifai = function (url, uid) {
+    var uploadPhotoToClarifai = function (url, uid, location) {
         var deferred = $q.defer();
 
         console.log("CLaRIFAI")
-        app.inputs.create([{ url: url, id : uid, metadata: {firebaseId: uid, type: 'nostalgia'}}]).then(
+        app.inputs.create([{ url: url, id : uid, metadata: {firebaseId: uid, location : location}}]).then(
             function (response) {
                 console.log("CLaRIFAI 2")
                 deferred.resolve({clarifaiId : response[0].id, uid: uid});
