@@ -1,3 +1,5 @@
+'use strict';
+
 whatsYourPic.directive('myDatepicker', function () {
     return {
         restrict: 'E',

@@ -12,16 +12,16 @@ localStorageService, ngProgressFactory) {
 	console.log('auth');
 
 	$rootScope.progressbar = ngProgressFactory.createInstance();
-	$rootScope.progressbar.setColor("#000")
+	$rootScope.progressbar.setColor("#000");
 
-	$scope.storageType = 'Local storage'
+	$scope.storageType = 'Local storage';
 
 	if (localStorageService.getStorageType().indexOf('session') >= 0) {
-		$scope.storageType = 'Session storage'
+		$scope.storageType = 'Session storage';
 	}
 
 	if (!localStorageService.isSupported) {
-		$scope.storageType = 'Cookie'
+		$scope.storageType = 'Cookie';
 	}
 
     $rootScope.facebookLogin = function() {
@@ -43,8 +43,8 @@ localStorageService, ngProgressFactory) {
                 $rootScope.facebookToken = response.authResponse.accessToken;
                 $rootScope.facebookUserId = response.authResponse.userID;
 
-                localStorageService.set('fbToken', $rootScope.facebookToken)
-                localStorageService.set('fbUserId', $rootScope.facebookUserId)
+                localStorageService.set('fbToken', $rootScope.facebookToken);
+                localStorageService.set('fbUserId', $rootScope.facebookUserId);
 
                 $rootScope.getFacebookPhotosIds();
 			} else {
