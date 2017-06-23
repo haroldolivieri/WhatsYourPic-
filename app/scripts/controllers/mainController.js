@@ -324,9 +324,10 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
     };
 
     var getLocation = function () {
-        var location;
+        var location = undefined;
 
         if ($scope.form.location.formatted_address) {
+            location = {};
             location.name = $scope.form.location.formatted_address;
             location.url = $scope.form.location.url;
             if ($scope.form.location.geometry) {
@@ -336,6 +337,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         }
 
         if (location === undefined) {
+            location = {};
             location.name = $scope.form.location;
         }
 
