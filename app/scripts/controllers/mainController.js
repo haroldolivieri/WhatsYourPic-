@@ -227,7 +227,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             url: url,
             responseType: "arraybuffer"
         }).then(function (res) {
-            let blob = new Blob([res.data], { type: 'image/png' });
+            var blob = new Blob([res.data], { type: 'image/png' });
             deferred.resolve(blob);
         }, function (error) {
             deferred.reject(err);

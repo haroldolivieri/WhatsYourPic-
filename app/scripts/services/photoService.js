@@ -1,2 +1,2 @@
-whatsYourPic.factory('PhotoService', function($rootScope, $q) {
-});
+// whatsYourPic.factory('PhotoService', function($rootScope, $q) {
+// });
