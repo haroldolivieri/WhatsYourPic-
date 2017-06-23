@@ -18,12 +18,12 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
     var auth = $firebaseAuth();
 
 
-    var refForms = ref.child("crowdSourcing")
-    var forms = $firebaseArray(refForms)
+    var refForms = ref.child("crowdSourcing");
     //sendImagesToClarifai(forms)
 
-    function sendImagesToClarifai(forms) {
-        $scope.forms = []
+    function sendImagesToClarifai() {
+        var forms = $firebaseArray(refForms);
+        $scope.forms = [];
 
         auth.$signInAnonymously().then(function (firebaseUser) {
             forms.$loaded().then(function () {
@@ -49,8 +49,8 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         
         ref.child("crowdSourcing").child(uid).on('value', function (snap) {
             var data = snap.val();
-            data.sentToModel = true
-            data.clarifaiId = clarifaiId
+            data.sentToModel = true;
+            data.clarifaiId = clarifaiId;
             ref.child("crowdSourcing").child(uid).update(data);
             deferred.resolve();
         }, function (err) {
@@ -58,12 +58,12 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         });
 
         return deferred.promise;
-    }
+    };
 
-    $scope.form = {}
-    $rootScope.selectedImage = "empty"
-    $rootScope.selectedImageCheck = false
-    $rootScope.navigationHelper = false
+    $scope.form = {};
+    $rootScope.selectedImage = "empty";
+    $rootScope.selectedImageCheck = false;
+    $rootScope.navigationHelper = false;
     $scope.canShowFooter = false;
     $scope.showAbout = false;
     $scope.canClick = true;
@@ -76,7 +76,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
     }
 
     $(document).on('fbload', function () {
-        $rootScope.getFacebookPhotosIds()
+        $rootScope.getFacebookPhotosIds();
     });
 
     $rootScope.getFacebookPhotosIds = function () {
@@ -86,13 +86,13 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
                 if (!response || response.error) {
                     $rootScope.progressbar.complete();
 
-                    if (response.error.code == 190) {
+                    if (response.error.code === 190) {
                         $rootScope.selectedButtonFacebook = false;
                         $rootScope.facebookUserId = "";
                         $rootScope.facebookToken = "";
-                        localStorageService.set('fbToken', $rootScope.facebookToken)
-                        localStorageService.set('fbUserId', $rootScope.facebookUserId)
-                        $rootScope.facebookLogin()
+                        localStorageService.set('fbToken', $rootScope.facebookToken);
+                        localStorageService.set('fbUserId', $rootScope.facebookUserId);
+                        $rootScope.facebookLogin();
                     }
                 } else {
                     $rootScope.selectedButtonFacebook = true;
@@ -107,20 +107,20 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             return false;
         }
         return $rootScope.urlArray.length > 0;
-    }
+    };
 
     $rootScope.checkIfHasImages = function () {
         if (!$rootScope.photoArray) {
             return false;
         }
         return $rootScope.photoArray.length > 0;
-    }
+    };
 
     $scope.scrollToForm = function () {
         var element = document.getElementById('form');
         smoothScroll(element);
         $scope.canShowFooter = false;
-    }
+    };
 
     $scope.selectImage = function (index) {
         angular.forEach($rootScope.photoArray, function (value, key) {
@@ -132,52 +132,52 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         $rootScope.photoArray[index].selected = true;
         $rootScope.navigationHelper = true;
         $scope.canShowFooter = true;
-    }
+    };
 
     $scope.$watch('form.date', function () {
-        validateFields()
+        validateFields();
     });
 
     $scope.$watch("form.location", function () {
-        validateFields()
+        validateFields();
     });
 
     $rootScope.$watch('selectedImage', function () {
-        validateFields()
+        validateFields();
     });
 
     var validateFields = function () {
-        if ($scope.form.date && $scope.form.location && $rootScope.selectedImage != "empty") {
+        if ($scope.form.date && $scope.form.location && $rootScope.selectedImage !== "empty") {
             $rootScope.validateSubmit = true;
         } else {
             $rootScope.validateSubmit = false;
         }
-    }
+    };
 
     $scope.sendForm = function () {
 
-        if ($scope.canClick == false) {
+        if ($scope.canClick === false) {
             return;
         }
 
-        if ($rootScope.selectedImage == "empty") {
+        if ($rootScope.selectedImage === "empty") {
             showCustomToast("Selecione uma das fotos");
             return;
         }
 
-        if (!$scope.form.location || $scope.form.location == undefined) {
+        if (!$scope.form.location || $scope.form.location === undefined) {
             showCustomToast("Entre com a localização onde a foto foi tirada");
             document.getElementById("location").focus();
             return;
         }
 
-        if (!$scope.form.date || $scope.form.date == undefined || $moment($scope.form.date).format("MMMM") == "Invalid date") {
+        if (!$scope.form.date || $scope.form.date === undefined || $moment($scope.form.date).format("MMMM") === "Invalid date") {
             showCustomToast("Preencha com a data aproximada");
             return;
         }
 
-        $scope.canClick = false
-        var forms = $firebaseArray(ref.child("crowdSourcing"))
+        $scope.canClick = false;
+        var forms = $firebaseArray(ref.child("crowdSourcing"));
         $scope.location = getLocation();
 
         forms.$add({
@@ -187,7 +187,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             imageUrl: $rootScope.selectedImage,
             createdAt: ($moment().unix()) * 1000
         }).then(function (ref) {
-            $scope.id = ref.path.o[1]
+            $scope.id = ref.path.o[1];
             console.log("added record with id " + $scope.id);
             return downloadImage($rootScope.selectedImage);
         }).then(function (blob) {
@@ -197,13 +197,13 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         }).then(function (response) {
             return uploadPhotoToClarifai(response.url, $scope.id, $scope.location, $moment($scope.form.date).format("MMMM"), $moment($scope.form.date).format("YYYY"));
         }).then(function (response) {
-            console.log(response.clarifaiId)
+            console.log(response.clarifaiId);
             return updateRow($scope.id, response.clarifaiId);
         }).then(function (response) {
             SweetAlert.swal("Obrigado por participar!", "Informações enviadas " +
                 "com sucesso! Fique a vontade para enviar quantas desejar ;)", "success");
         }).catch(function (err) {
-            console.log(err)
+            console.log(err);
             SweetAlert.swal("Tivemos um problema :(",
                 "Houve um erro ao enviar sua foto, por favor, tente novamente", "error");
         }).finally(function () {
@@ -217,7 +217,7 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             });
             $scope.form = {};
         });
-    }
+    };
 
     var downloadImage = function (url) {
         var deferred = $q.defer();
@@ -227,23 +227,23 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
             url: url,
             responseType: "arraybuffer"
         }).then(function (res) {
-            let blob = new Blob([res.data], { type: 'image/png' });
+            var blob = new Blob([res.data], { type: 'image/png' });
             deferred.resolve(blob);
         }, function (error) {
-            deferred.reject(err);
+            deferred.reject(error);
         });
 
         return deferred.promise;
-    }
+    };
 
     var getUrlFromFirebaseImage = function (uid, location, month, year) {
-        console.log(uid)
+        console.log(uid);
         var deferred = $q.defer();
 
         auth.$signInAnonymously().then(function (firebaseUser) {
-            console.log(uid)
+            console.log(uid);
             storageRef.child("images").child(uid + ".png").getDownloadURL().then(function (url) {
-                console.log(uid)
+                console.log(uid);
                 deferred.resolve({url : url, uid: uid, location: location, month : month, year : year});
             }).catch(function (error) {
                 deferred.reject(error);
@@ -257,19 +257,19 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
 
     var uploadPhotoToClarifai = function (url, uid, location, month, year) {
         var deferred = $q.defer();
-        console.log("CLaRIFAI")
+        console.log("CLaRIFAI");
         app.inputs.create([{ url: url, id : uid, metadata: {firebaseId: uid, location : location, date : { month : month, year : year }}}]).then(
             function (response) {
-                console.log("CLaRIFAI 2")
+                console.log("CLaRIFAI 2");
                 deferred.resolve({clarifaiId : response[0].id, uid: uid});
             },
             function (err) {
-                console.log("CLaRIFAI 3")
+                console.log("CLaRIFAI 3");
                 deferred.reject(err);
             });
 
         return deferred.promise;
-    }
+    };
 
     var uploadPhotoToFirebaseStorage = function (blob, uid) {
         var deferred = $q.defer();
@@ -286,20 +286,20 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
         });
 
         return deferred.promise;
-    }
+    };
 
     var showCustomToast = function (message) {
         ngToast.create({
             className: 'info',
             content: '<span class="">' + message + '</span>'
         });
-    }
+    };
 
     var getFacebookPhotosUrl = function (imageObjects) {
         $rootScope.photoArray = [];
         var count = imageObjects.data.length;
 
-        var loadedCount = 0
+        var loadedCount = 0;
         angular.forEach(imageObjects.data, function (value, key) {
             FB.api("/" + value.id + "/picture?access_token=" +
                 $rootScope.facebookToken, function (response) {
@@ -307,40 +307,38 @@ whatsYourPic.controller('MainCtrl', function ($rootScope, $scope, $window,
                         loadedCount++;
                         $rootScope.progressbar.set(40 + loadedCount * 60 / count);
 
-                        if (loadedCount == count) {
-                            $rootScope.progressbar.complete()
+                        if (loadedCount === count) {
+                            $rootScope.progressbar.complete();
                         }
 
-                        var photo = {}
-                        photo.url = response.data.url
-                        photo.selected = false
-                        photo.onHover = false
+                        var photo = {};
+                        photo.url = response.data.url;
+                        photo.selected = false;
+                        photo.onHover = false;
                         $rootScope.$apply(function () {
                             $rootScope.photoArray.push(photo);
                         });
                     }
                 });
         });
-    }
+    };
 
     var getLocation = function () {
-        var location = undefined
+        var location;
 
         if ($scope.form.location.formatted_address) {
-            var location = {}
-            location.name = $scope.form.location.formatted_address
-            location.url = $scope.form.location.url
+            location.name = $scope.form.location.formatted_address;
+            location.url = $scope.form.location.url;
             if ($scope.form.location.geometry) {
-                location.latitude = $scope.form.location.geometry.location.lat()
-                location.longitude = $scope.form.location.geometry.location.lng()
+                location.latitude = $scope.form.location.geometry.location.lat();
+                location.longitude = $scope.form.location.geometry.location.lng();
             }
         }
 
-        if (location == undefined) {
-            var location = {}
-            location.name = $scope.form.location
+        if (location === undefined) {
+            location.name = $scope.form.location;
         }
 
         return location;
-    }
+    };
 });
